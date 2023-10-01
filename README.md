@@ -2,6 +2,15 @@
 
 ```bash
 git clone https://github.com/vivekkoya/LikeHome-Hotel/
+cd server
+npm install
+npm start
+```
+
+Open up a second terminal and run the following
+
+```bash
+cd {Path}/hotel
 npm install
 npm start
 ```
