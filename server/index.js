@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
+import listingRoutes from './routes/listing.js';
+app.use('/listings', listingRoutes)
 
 const app = express()
 
@@ -19,9 +21,6 @@ mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: tr
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((error) => console.log(error))
 
-
-
-
 // Basic app get request for info
 app.get('/', (req, res) => {
     res.send('Hello World!')
@@ -31,4 +30,3 @@ app.get('/', (req, res) => {
 app.get('/hotel', (req, res) => {
     res.send('Hotels Information')
 })
-
