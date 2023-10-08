@@ -4,7 +4,7 @@ const router = express.Router();
 
 import Listing from '../models/listing.js'
 
-//localhost:5000/lisitngs
+//localhost:5001/lisitngs
 
 router.get('/', (req, res) => {
     try {
@@ -54,6 +54,19 @@ router.delete('/deleteListing/:listingId', async (req ,res) => {
         res.status(200).json({message: "Listing succesfully deleted"})
     } catch (error) {
         res.status(404).json({message: error.message})
+    }
+})
+
+//Note for multiword cities like san jose use %20 instead of space 
+// ex localhost:5001/listings/ListingInCity/San%20Jose
+router.get('/ListingInCity/:city', async (req, res) => {
+    const city = req.params.city
+    L
+    try {
+        const listing = await Listing.find({ 'location.city': city }).lean();
+        res.status(200).json(listing) 
+    } catch (error) {
+        res.status(404).json({message: error.message});
     }
 })
 
