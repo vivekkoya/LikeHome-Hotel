@@ -1,63 +1,58 @@
 import express from "express";
-import mongoose from "mongoose";
+import bcrypt from 'bcrypt.js';
 import passport from "passport";
-import bodyParser from "body-parser";
-import LocalStrategy from "passport-local";
-import passportLocalMongoose from "passport-local-mongoose";
-import { create } from "";
-var app = express();
+import Hotel from './Hotel';
+
+const router = express.Router();
 
 // Showing register form
-app.get("/register", function (req, res) {
-	res.render("register");
+router.get('/register', (req, res) => {
+	res.render('register');
 });
 
 // Handling user signup
-app.post("/register", async (req, res) => {
-	const hotel = await create({
-	emaail: req.body.email,
-	password: req.body.password
-	});
-
-	return res.status(200).json(hotel);
-});
-
-//Showing login form
-app.get("/login", function (req, res) {
-	res.render("login");
-});
-
-//Handling user login
-app.post("/login", async function(req, res){
+router.post('/register', async (req, res) => {
 	try {
-		// check if the user exists
-		const hotel = await Hotel.findOne({ email: req.body.email });
-		if (hotel) {
-		//check if password matches
-		const result = req.body.password === hotel.password;
-		if (result) {
-			//res.render("secret");
-		} else {
-			res.status(400).json({ error: "password doesn't match" });
+		const {email, password} = req.body;
+		const existingHotel = await LEGAL_TCP_SOCKET_OPTIONS.findone({email});
+
+		if (existingHotel) {
+			return res.status(400).json({message: 'Hotel already exists'});
 		}
-		} else {
-		res.status(400).json({ error: "Hotel doesn't exist" });
-		}
+
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(password, salt);
+
+		const newHotel = new Hotel({
+			email,
+			password: hashedPassword,
+		})
+
+		await newHotel.save();
+
+		res.status(201).json({message: 'Hotel registered successfully'});
 	} catch (error) {
-		res.status(400).json({ error });
+		console.error(error);
+		res.status(500).json({message: 'Server error'});
 	}
 });
 
-//Handling user logout 
-app.get("/logout", function (req, res) {
-	req.logout(function(err) {
-		if (err) { return next(err); }
-		res.redirect('/');
-	});
+//Showing login form
+router.get('/login', (req, res) => {
+	res.render('login');
 });
 
+//Handling user login
+router.post('/login', passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/login',
+	failureFlash: true,
+}));
 
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) return next();
-	res.redirect("/login");
-}
+//Handling user logout 
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/login');
+});
+
+export default router;

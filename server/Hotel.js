@@ -1,9 +1,7 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const passportLocalMongoose = require('passport-local-mongoose');
+import mongoose from 'mongoose';
+import Listing from './models/listing';
 
-var HotelSchema = Schema(
-  {
+const HotelSchema = mongoose.Schema({
     email: {
       type: String,
       lowercase: true,
@@ -18,9 +16,13 @@ var HotelSchema = Schema(
       trim: true,
       minLength: 8,
       maxLength: 32
-    }
-  }
-)
+    },
 
-Hotel.plugin(passportLocalMongoose);
-module.exports = mongoose.model("Hotel", Hotel);
+    listings: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Listing',
+    }]
+});
+
+const Hotel = mongoose.model('Hotel', HotelSchema);
+export default Hotel;
