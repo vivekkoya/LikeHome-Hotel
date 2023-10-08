@@ -1,8 +1,10 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const mongoose = require('mongoose')
+import express from 'express'
+import bodyParser from 'body-parser'
+import mongoose from 'mongoose'
+import cors from 'cors'
 
+
+import listingRoutes from './routes/listings.js'
 
 const app = express()
 
@@ -15,12 +17,12 @@ const CONNECTION_URL = 'mongodb+srv://Winson:yptSeHMywBWNWR4G@hotel.pu5yiij.mong
 const PORT = 5001
 
 //Setting up the connection to mongodb atlas
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+    .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
     .catch((error) => console.log(error))
 
-
-
+app.use('/listings', listingRoutes)
 
 // Basic app get request for info
 app.get('/', (req, res) => {
@@ -31,4 +33,3 @@ app.get('/', (req, res) => {
 app.get('/hotel', (req, res) => {
     res.send('Hotels Information')
 })
-
