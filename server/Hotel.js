@@ -18,6 +18,11 @@ const HotelSchema = mongoose.Schema({
       maxLength: 32
     },
 
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+
     listings: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Listing',
