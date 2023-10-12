@@ -6,14 +6,18 @@ import Hotel from './Hotel';
 const router = express.Router();
 
 // Showing register form
-router.get('/register', (req, res) => {
-	res.render('register');
+router.get('/reg-admin', (req, res) => {
+	res.render('reg-admin');
+});
+
+router.get('/reg-customer', (req, res) => {
+	res.render('reg-customer');
 });
 
 // Handling user signup
 router.post('/register', async (req, res) => {
 	try {
-		const {email, password} = req.body;
+		const {email, password, role} = req.body;
 		const existingHotel = await LEGAL_TCP_SOCKET_OPTIONS.findone({email});
 
 		if (existingHotel) {
@@ -26,6 +30,7 @@ router.post('/register', async (req, res) => {
 		const newHotel = new Hotel({
 			email,
 			password: hashedPassword,
+			role,
 		})
 
 		await newHotel.save();

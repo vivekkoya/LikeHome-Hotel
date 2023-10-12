@@ -1,13 +1,13 @@
 
 import './App.css';
 import LoginSignup from './loginpage/LoginSignup';
+import React from 'react';
 
 
 function App() {
   return (
     <div className="App">
       <LoginSignup/>
-      <img src="/images/Listng1.jpeg" alt="Image" ></img>
     </div>
   );
 }
