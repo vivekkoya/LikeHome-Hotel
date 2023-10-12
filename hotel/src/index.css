@@ -11,3 +11,62 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav {
+  background: #151515;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.site-name {
+  color: #FCA311;
+  font-size: 3rem;
+  font-Weight: 600;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-decoration: none;
+  padding: 1rem
+}
+
+.middle-link {
+  color: #e5e5e5;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+}
+
+.middle-link:hover {
+  color:#FCA311
+}
+
+
+.button-link {
+  border-radius: 1rem;
+  padding: 1rem;
+  text-decoration: none;
+  background-color: #14213D;
+  margin: 16px;
+  margin-left: 0px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #e5e5e5
+}
+
+.button-link:hover {
+  color: #222222;
+  background-color: #FCA311
+}
+
+.row {
+  list-style: none; /* Remove default list bullets */
+  display: flex; /* Use a flex container */
+  padding: 0; /* Remove default list padding */
+}
