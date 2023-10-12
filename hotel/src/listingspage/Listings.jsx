@@ -12,7 +12,7 @@ const Listings = () => {
     ]
     return (
     <div className="listings">
-        <h3>Current Listings</h3>
+        <h2>Current Listings</h2>
         <div className="listing-cards">
          {
               (
