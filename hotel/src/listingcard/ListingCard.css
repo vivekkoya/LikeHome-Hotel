@@ -1,0 +1,39 @@
+.listing-card {
+    height: 450px;
+    border: 1px solid #999999;
+    min-width: 35%;
+    margin: 24px;
+    border-radius: 24px;
+    padding: 8px;
+}
+
+.listing-image {
+    width: 100%;
+    height: 75%;
+}
+
+.listing-details {
+    height: 100%;
+     justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+}
+
+.listing-name {
+    font-size: 36px;
+}
+
+.listing-info{
+    font-family: sans-serif;
+    height: 25%;
+    display: flex;
+}
+
+.listing-price {
+transform: translateY(-4px);
+    padding: 0 16px;
+    margin-left: auto;
+    font-size: 44px;
+}
