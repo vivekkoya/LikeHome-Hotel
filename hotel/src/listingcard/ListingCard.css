@@ -11,6 +11,9 @@
     width: 100%;
     height: 75%;
 }
+.listing-card:hover {
+    background-color: #EEEEEE;
+}
 
 .listing-details {
     height: 100%;
