@@ -1,25 +1,26 @@
-
 import './App.css';
+import NavBar from './components/NavBar';
 import LoginSignup from './loginpage/LoginSignup';
 import Listings from './listingspage/Listings';
 import React from 'react';
-import { Router, Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'
 
 
 function App() {
   return (
-
-
-    <div className="App">
-    <h1>LIKE HOME APP</h1>
-      <div className="routes">
+    <>
+      <NavBar/>
+      <Router>
         <Routes>
-            <Route exact path="/" element={<LoginSignup/>}/>
-            <Route path="/listings" element={<Listings/>} />
+          <Route exact path="/login" element={<LoginSignup/>}/>
+          <Route exact path="/signup" element={<h1>Sign Up</h1>}/>
+          <Route exact path="/viewreservations" element={<h1>User Reservations Page</h1>}/>
+          <Route exact path="/hotelviewbookings" element={<h1>Hotel Bookings Page</h1>}/>
+          <Route exact path="/" element={<h1>Search Listing Page</h1>}/>
+          <Route path="/listings" element={<Listings/>} />
         </Routes>
-      </div>
-    </div>
-  );
-}
+      </Router>
+    </>
+)}
 
 export default App;
