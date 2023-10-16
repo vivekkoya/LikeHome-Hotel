@@ -26,27 +26,24 @@ const Listings = () => {
     })();
   }, [location]);
 
-const onSearchClick = async() => {
-    console.log("here");
-    const search = searchQuery.replace(' ', '%20');
-    console.log(search);
-    try {
-            const res = await fetch(`http://localhost:5001/listings/ListingInCity/${searchQuery}`)
-             if (!res.ok) {
-                      throw new Error(`HTTP error! Status: ${res.status}`);
-                    }
-                    const data = await res.json();
-                    setListings(data);
-                    console.log(data);
-          }
-    catch (error) {
-          console.error("Fetch error:", error);
+    const onSearchClick = async() => {
+        const search = searchQuery.replace(' ', '%20');
+        try {
+        const res = await fetch(`http://localhost:5001/listings/ListingInCity/${searchQuery}`)
+         if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+         }
+            const data = await res.json();
+            setListings(data);
+        }
+        catch (error) {
+            console.error("Fetch error:", error);
+        }
     }
-}
 
-const handleChange = (event) => {
-    searchQuery = event.target.value;
-}
+    const handleChange = (event) => {
+        searchQuery = event.target.value;
+    }
   /* const listings1 = [
     { name: "Marriott", city: "San Jose, CA", rating: "4.7", price: "$150" },
     { name: "Hilton", city: "Santa Clara, CA", rating: "4.3", price: "$175" },
