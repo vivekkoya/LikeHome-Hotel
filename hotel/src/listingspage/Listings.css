@@ -1,3 +1,6 @@
+.listings {
+    padding: 20px;
+}
 .listing-cards {
     display: flex;
     flex-wrap: wrap;
@@ -7,4 +10,30 @@ h2{
     padding-top: 12px;
     color: #14213D;
     text-align: center;
+}
+.header-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.search-bar{
+    margin: auto;
+}
+.search-text-field{
+border: 1px solid #14213D;
+    margin: 0 8px;
+    border-radius: 24px;
+    width: 400px;
+    height: 36px;
+    padding: 0 12px;
+}
+.search-button{
+border-radius: 16px;
+    height: fit-content;
+    width: fit-content;
+    color: #F9F8F8;
+    background-color: #14213E;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 4px 8px;
 }

@@ -61,7 +61,6 @@ router.delete('/deleteListing/:listingId', async (req ,res) => {
 // ex localhost:5001/listings/ListingInCity/San%20Jose
 router.get('/ListingInCity/:city', async (req, res) => {
     const city = req.params.city
-    L
     try {
         const listing = await Listing.find({ 'location.city': city }).lean();
         res.status(200).json(listing) 
