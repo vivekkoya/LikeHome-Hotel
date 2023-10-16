@@ -1,15 +1,11 @@
 import './App.css';
 import styled from "styled-components";
 import NavBar from './components/NavBar';
-<<<<<<< HEAD
-import { AccountBox, accountBox } from "./components/accountBox";
-=======
-import LoginSignup from './loginpage/LoginSignup';
 import Listings from './listingspage/Listings';
->>>>>>> f8912996ba3190885e945e4e72f9066dd81dcdbb
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'
 import { LoginForm } from './components/accountBox/loginForm';
+import {AccountBox} from "./components/accountBox";
 
 
 const AppContainer = styled.div`

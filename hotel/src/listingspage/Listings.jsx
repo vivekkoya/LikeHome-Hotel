@@ -4,7 +4,7 @@ import ListingCard from "../listingcard/ListingCard";
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
-  //const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -18,7 +18,7 @@ const Listings = () => {
         }
         const data = await response.json();
         setListings(data);
-        console.log(location);
+         console.log(location);
       } catch (error) {
         console.error("Fetch error:", error);
       }
