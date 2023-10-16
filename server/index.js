@@ -5,6 +5,7 @@ import cors from 'cors'
 
 
 import listingRoutes from './routes/listings.js'
+import hotelRoutes from './routes/HotelLogin.js'
 
 const app = express()
 
@@ -23,6 +24,7 @@ mongoose
     .catch((error) => console.log(error))
 
 app.use('/listings', listingRoutes)
+app.use('/user', hotelRoutes)
 
 // Basic app get request for info
 app.get('/', (req, res) => {

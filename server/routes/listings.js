@@ -60,8 +60,8 @@ router.delete('/deleteListing/:listingId', async (req ,res) => {
 //Note for multiword cities like san jose use %20 instead of space 
 // ex localhost:5001/listings/ListingInCity/San%20Jose
 router.get('/ListingInCity/:city', async (req, res) => {
+    console.log(req.params.city)
     const city = req.params.city
-    L
     try {
         const listing = await Listing.find({ 'location.city': city }).lean();
         res.status(200).json(listing) 

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Listing from './models/listing';
+import Listing from './listing.js';
 
 const HotelSchema = mongoose.Schema({
     email: {
@@ -15,7 +15,7 @@ const HotelSchema = mongoose.Schema({
       required: "Password is required",
       trim: true,
       minLength: 8,
-      maxLength: 32
+      maxLength: 60
     },
 
     isAdmin: {
