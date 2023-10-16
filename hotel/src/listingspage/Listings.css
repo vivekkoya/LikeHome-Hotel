@@ -1,0 +1,10 @@
+.listing-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+h2{
+    padding-top: 12px;
+    color: #14213D;
+    text-align: center;
+}
