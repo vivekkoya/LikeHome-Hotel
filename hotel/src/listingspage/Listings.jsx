@@ -19,7 +19,7 @@ const Listings = () => {
         }
         const data = await response.json();
         setListings(data);
-//         console.log(location);
+         console.log(location);
       } catch (error) {
         console.error("Fetch error:", error);
       }

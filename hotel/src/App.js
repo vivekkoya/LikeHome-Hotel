@@ -1,10 +1,22 @@
 import './App.css';
+import styled from "styled-components";
 import NavBar from './components/NavBar';
-import LoginSignup from './loginpage/LoginSignup';
 import Listings from './listingspage/Listings';
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'
+import { LoginForm } from './components/accountBox/loginForm';
+import {AccountBox} from "./components/accountBox";
 
+
+const AppContainer = styled.div`
+  
+  height: 100%;
+  display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  
+`;
 
 function App() {
   return (
@@ -12,7 +24,7 @@ function App() {
       <NavBar/>
       <Router>
         <Routes>
-          <Route exact path="/login" element={<LoginSignup/>}/>
+          <Route exact path="/login" element={<AppContainer><AccountBox/></AppContainer>}/>
           <Route exact path="/signup" element={<h1>Sign Up</h1>}/>
           <Route exact path="/viewreservations" element={<h1>User Reservations Page</h1>}/>
           <Route exact path="/hotelviewbookings" element={<h1>Hotel Bookings Page</h1>}/>
