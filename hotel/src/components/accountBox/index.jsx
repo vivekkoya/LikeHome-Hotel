@@ -6,7 +6,7 @@ import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
 
 const BoxContainer = styled.div`
-  margin-top: 250px;
+  margin-top: 5%;
   width: 500px;
   min-height: 550px;
   display: flex;
@@ -16,7 +16,6 @@ const BoxContainer = styled.div`
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
-  
 `;
 
 const TopContainer = styled.div`
@@ -76,6 +75,7 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.8em;
+  margin-bottom: 10px;
 `;
 
 const backdropVariants = {

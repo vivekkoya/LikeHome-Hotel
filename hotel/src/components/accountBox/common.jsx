@@ -74,3 +74,29 @@ export const SubmitButton = styled.button`
     filter: brightness(1.03);
   }
 `;
+
+export const RadioButtonContainer = styled.div`
+  height: 42px;
+  outline: none;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  padding: 10px 20px;
+  border-bottom: 1.4px solid transparent;
+  transition: all 200ms ease-in-out;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const RadioButton = styled.label`
+  padding: 6px;
+  min-width: 100px;
+  border: 2px solid rgb(241, 196, 15);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: ${(props) => (props.checked ? "white" : "rgb(241, 196, 15)")};
+  background-color: ${(props) =>
+    props.checked ? "rgb(241, 196, 15)" : "white"};
+`;
