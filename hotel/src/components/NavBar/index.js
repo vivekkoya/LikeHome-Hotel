@@ -20,9 +20,6 @@ const NavBar = () => {
             <li>
                 <a className="button-link" href="/login">Sign In</a>
             </li>
-            <li>
-                <a className="button-link" href="/signup">Sign Up</a>
-            </li>
         </ul>
     </nav>
   )
