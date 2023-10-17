@@ -4,14 +4,19 @@ import { useCookies } from "react-cookie"
 
 
 const NavBar = () => {
-    const [cookies, setCookies] = useCookies(['users'])
+    const [cookies, setCookies] = useCookies(['users', 'isAdmin'])
     var user = cookies.user
     if (!user) {
         user = ""
     }
+    var type = cookies.isAdmin
+    if (!type) {
+        type = ""
+    }
 
     const logout = () => {
         setCookies("user", "", {path:"/"})
+        setCookies("isAdmin", "", {path:"/"})
         window.location.href = "/login"
     }
 
@@ -23,10 +28,10 @@ const NavBar = () => {
                 <a className="middle-link" href="/"> Find Hotel</a>
             </li>
             <li>
-                <a className="middle-link" href="/viewreservations"> View Reservations </a>
+                { type === "client" && <a className="middle-link" href="/viewreservations"> View Reservations </a> }
             </li>
             <li>
-                <a className="middle-link" href="/hotelviewbookings"> View Bookings </a>
+                { type === "hotel" && <a className="middle-link" href="/hotelviewbookings"> View Bookings </a> }
             </li>
         </ul>
         <ul className="row">

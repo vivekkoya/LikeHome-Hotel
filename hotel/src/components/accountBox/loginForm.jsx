@@ -41,7 +41,13 @@ export function LoginForm(props) {
         alert("incorrect credentials");
       } else {
         setCookie("user", email, { path: "/" });
-        window.location.href = "/";
+        const data = await response.json();
+        if (data.isAdmin) {
+          setCookie("isAdmin", "hotel", "/");
+        } else {
+          setCookie("isAdmin", "client", "/");
+        }
+        // window.location.href = "/";
       }
     } catch (error) {
       alert(error.message);
