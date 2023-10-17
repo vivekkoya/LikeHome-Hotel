@@ -25,7 +25,7 @@ const TopContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: 5em;
+  padding-bottom: 2rem;
 `;
 
 const BackDrop = styled(motion.div)`
@@ -75,7 +75,7 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.8em;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const backdropVariants = {

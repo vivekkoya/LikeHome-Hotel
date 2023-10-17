@@ -1,4 +1,5 @@
 body {
+  background-color: #F9F8F8;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -13,7 +14,7 @@ code {
 }
 
 .nav {
-  background: #151515;
+  background: #14213D;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -24,7 +25,7 @@ code {
 }
 
 .site-name {
-  color: #FCA311;
+  color: #FBB03B;
   font-size: 3rem;
   font-Weight: 600;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -33,7 +34,7 @@ code {
 }
 
 .middle-link {
-  color: #e5e5e5;
+  color: #F9F8F8;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -44,7 +45,7 @@ code {
 }
 
 .middle-link:hover {
-  color:#FCA311
+  color:#FBB03B;
 }
 
 
@@ -52,21 +53,32 @@ code {
   border-radius: 1rem;
   padding: 1rem;
   text-decoration: none;
-  background-color: #14213D;
+  border: 3px solid #FBB03B;
+  color:#FBB03B;
   margin: 16px;
   margin-left: 0px;
   font-size: 1.25rem;
   font-weight: 800;
-  color: #e5e5e5
 }
 
 .button-link:hover {
-  color: #222222;
-  background-color: #FCA311
+  color: #14213D;
+  background-color: #FBB03B;
 }
 
 .row {
   list-style: none; /* Remove default list bullets */
   display: flex; /* Use a flex container */
   padding: 0; /* Remove default list padding */
+}
+
+.user-name {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.user-name:hover{
+  color: #Fbb038
 }

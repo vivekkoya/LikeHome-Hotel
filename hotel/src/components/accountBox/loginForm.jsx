@@ -9,9 +9,11 @@ import {
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
+import { useCookies } from "react-cookie";
 
 export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
+  const [cookies, setCookie] = useCookies(["users"]);
 
   const [email, setEmail] = useState("");
   const emailChange = (event) => {
@@ -38,6 +40,7 @@ export function LoginForm(props) {
       if (!response.ok) {
         alert("incorrect credentials");
       } else {
+        setCookie("user", email, { path: "/" });
         window.location.href = "/";
       }
     } catch (error) {
