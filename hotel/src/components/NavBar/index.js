@@ -21,7 +21,7 @@ const NavBar = () => {
     }
 
   return (
-    <nav className="nav">
+    <nav className="site-nav">
         <a href="/" className="site-name">LikeHome</a>
         <ul className="row">
             <li>
