@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./Reservation.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
 
 const MakeReservation = () => {
+  const { id } = useParams();
+  console.log(id);
   const details = {
     name: "Hotel Name",
     city: "San Jose",
