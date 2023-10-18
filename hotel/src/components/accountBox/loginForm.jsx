@@ -47,7 +47,7 @@ export function LoginForm(props) {
         } else {
           setCookie("isAdmin", "client", "/");
         }
-        // window.location.href = "/";
+        window.location.href = "/search";
       }
     } catch (error) {
       alert(error.message);
