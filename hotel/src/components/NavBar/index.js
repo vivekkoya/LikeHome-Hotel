@@ -25,7 +25,7 @@ const NavBar = () => {
         <a href="/" className="site-name">LikeHome</a>
         <ul className="row">
             <li>
-                <a className="middle-link" href="/"> Find Hotel</a>
+                <a className="middle-link" href="/search"> Find Hotel</a>
             </li>
             <li>
                 { type === "client" && <a className="middle-link" href="/viewreservations"> View Reservations </a> }
