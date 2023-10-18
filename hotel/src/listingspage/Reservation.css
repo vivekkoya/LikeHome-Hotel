@@ -6,13 +6,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     background-color: #f4f4f4;
 }
 
 .hotelbox {
-    margin-top: 50px;
-    margin-bottom: auto;
+    margin-top: 25px;
     background-color: #ffffff;
     overflow: hidden;
     border-radius: 10px;
@@ -138,6 +137,66 @@ body {
 }
 
 .payment-box {
-    height: 400px;
+    height: 375px;
     width: 400px;
+    margin-left: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-self:last baseline;
+    padding:20px;
 }
+
+.payment-box input {
+    border-radius: 5px;
+    border: 2px solid lightgray !important;
+    height: 20px;
+    box-shadow: 0px 0px 3px lightgray;
+    padding: 5px 15px;
+}
+
+.payment-box > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0x 16px;
+}
+
+.payment-box p {
+    margin:4px 0px;
+    font-weight: 500
+}
+
+.credit-input {
+    width: 98%;
+}
+
+.row-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.half-input {
+    width: 50%;
+}
+
+.reserve-button {
+    all: unset;
+    background-color: orange;
+    color: #14213d;
+    height: fit-content;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 3px lightgray
+}
+
+.reserve-button:hover{
+    color: white;
+    background-color:#14213D;;
+}
+

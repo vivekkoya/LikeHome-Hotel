@@ -37,10 +37,26 @@ const MakeReservation = () => {
     return newOptions;
   };
 
+  const [payEmail, setPayEmail] = useState("");
+  const [cardNum, setCardNum] = useState("");
+  const [expireDate, setExpireDate] = useState("");
+  const [cvc, setCVC] = useState("");
+  const [name, setName] = useState("");
+  const [country, setCountry] = useState("United States");
+  const [zipcode, setZipcode] = useState("");
+
   useEffect(() => {
     const newOptions = generateOptions(details.max_people);
     setOptions(newOptions);
   }, [details.max_people]);
+
+  const handleReserve = () => {
+    if (!payEmail || !cardNum || !expireDate || !cvc || !name || !zipcode) {
+      alert("missing information");
+      return;
+    }
+    window.location.href = "/viewreservations";
+  };
 
   return (
     <div className="reservation-page">
@@ -116,7 +132,62 @@ const MakeReservation = () => {
           </div>
         </div>
       </div>
-      <div className="payment-box"></div>
+      <div className="payment-box">
+        <div>
+          <p>Email</p>
+          <input
+            type="email"
+            value={payEmail}
+            onChange={(event) => setPayEmail(event.target.value)}
+            placeholder="john.doe@email.com"
+          ></input>
+        </div>
+        <div>
+          <p>Card Information</p>
+          <input
+            placeholder="1234 1234 1234 1234"
+            onChange={(event) => setCardNum(event.target.value)}
+            value={cardNum}
+          ></input>
+          <div className="row-input">
+            <input
+              className="half-input"
+              value={expireDate}
+              onChange={(event) => setExpireDate(event.target.value)}
+              placeholder="MM/YY"
+            ></input>
+            <input
+              className="half-input"
+              value={cvc}
+              onChange={(event) => setCVC(event.target.value)}
+              placeholder="CVC"
+            ></input>
+          </div>
+        </div>
+        <div>
+          <p>Name on card</p>
+          <input
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="John Doe"
+          ></input>
+        </div>
+        <div>
+          <p>Country or region</p>
+          <input
+            value={country}
+            onChange={(event) => setCountry(event.target.value)}
+          ></input>
+          <input
+            value={zipcode}
+            onChange={(event) => setZipcode(event.target.value)}
+            placeholder="ZIP"
+          ></input>
+        </div>
+        <button className="reserve-button" onClick={handleReserve}>
+          Reserve
+        </button>
+      </div>
     </div>
   );
 };
