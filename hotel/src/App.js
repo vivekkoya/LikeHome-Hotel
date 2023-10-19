@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { LoginForm } from './components/accountBox/loginForm';
 import {AccountBox} from "./components/accountBox";
 import ReservationPage from './reservation/ReservationPage';
+import MakeReservation from './listingspage/make-reservation';
 
 
 const AppContainer = styled.div`
@@ -33,7 +34,9 @@ function App() {
           <Route  path="/signup" element={<h1>Sign Up</h1>}/>
           <Route  path="/viewreservations" element={<ReservationPage></ReservationPage>}/>
           <Route  path="/hotelviewbookings" element={<h1>Hotel Bookings Page</h1>}/>
-          <Route  path="/" element={<Listings/>}/>
+          <Route  path="/search" element={<Listings/>}/>
+          <Route  path="/" element={<p>home page</p>}/>
+          <Route  path="/search/reservation/:id" element={<MakeReservation/>}/>
         </Routes>
       </Router>
     </>

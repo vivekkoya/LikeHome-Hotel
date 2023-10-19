@@ -11,15 +11,21 @@ const ListingCard = (props) => {
   const price = listing.price;
   const img = listing.imgurl[0];
 
+  const handleClick = () => {
+    window.location.href = `/search/reservation/${listing._id}`;
+  };
+
   return (
-    <div className="listing-card">
+    <div className="listing-card" onClick={handleClick}>
       <div className="listing-image-box">
         <img className="listing-image" src={img} alt="Listing Image"></img>
       </div>
       <div className="listing-info">
         <div className="listing-details">
           <div className="listing-name"> {name}</div>
-          <div className="listing-city">{city}, {state}</div>
+          <div className="listing-city">
+            {city}, {state}
+          </div>
           <div className="listing-rating">{4.5}</div>
         </div>
         <div className="listing-price">${price}</div>
