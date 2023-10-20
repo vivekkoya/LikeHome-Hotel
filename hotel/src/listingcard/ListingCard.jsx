@@ -6,6 +6,9 @@ const ListingCard = (props) => {
   const listing = props.listing;
   const name = listing.hotel_name;
   const city = listing.location.city;
+  const address = listing.location.address;
+  const max_people = listing.room_details.max_people;
+  const beds = listing.room_details.beds;
   const state = stateAbbreviation[listing.location.state];
   //const rating = listing.rating;
   const price = listing.price;
@@ -22,13 +25,21 @@ const ListingCard = (props) => {
       </div>
       <div className="listing-info">
         <div className="listing-details">
-          <div className="listing-name"> {name}</div>
-          <div className="listing-city">
-            {city}, {state}
-          </div>
-          <div className="listing-rating">{4.5}</div>
+          <h2>{name}</h2>
+          <p>
+            {address}, {city}
+          </p>
         </div>
-        <div className="listing-price">${price}</div>
+        <div className="bottom-row">
+          <div className="listing-details">
+            <h2>{beds} Beds</h2>
+            <p>max {max_people} guests</p>
+          </div>
+          <div className="listing-details">
+            <h2>${price}</h2>
+            <p>${Math.trunc(price * 1.08)} total</p>
+          </div>
+        </div>
       </div>
     </div>
   );

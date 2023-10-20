@@ -1,11 +1,7 @@
 .listings {
     padding: 20px;
 }
-.listing-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 h2{
     padding-top: 12px;
     color: #14213D;
@@ -13,23 +9,51 @@ h2{
 }
 .header-bar{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    margin-top: 20px; 
+    padding-right: 23px;
 }
-.search-bar{
-    margin: auto;
+
+.my-datepicker {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 36px;
+    width: 165px;
+    padding-left: 10px;
+    font-size: 16px;
+    text-align: left;
+    border-radius: 10px;
+    border: 1px solid #14213D;
+    margin: 0 15px 0 0;
+    background: white
+
+}
+
+.my-datepicker p {
+    margin-left: 15px
 }
 .search-text-field{
-border: 1px solid #14213D;
-    margin: 0 8px;
-    border-radius: 24px;
+    border: 1px solid #14213D;
+    margin: 0 5px 0 0;
+    border-radius: 10px;
     width: 400px;
     height: 36px;
-    padding: 0 12px;
+    padding: 0 32px;
+    font-size:16px
+}
+
+.search-icon {
+    margin: 0;
+    top: 50%; /* Vertically center the icon */
+    left: 10px; /* Adjust the value to position the icon */
+    transform: translatex(-2875%) translatey(10%);
+    z-index: 10;
 }
 .search-button{
-    border-radius: 16px;
-    height: fit-content;
+    border-radius: 10px;
+    height: 36px;
     width: fit-content;
     color: #F9F8F8;
     background-color: #14213E;
@@ -37,4 +61,28 @@ border: 1px solid #14213D;
     font-weight: 800;
     padding: 4px 8px;
 }
+
+.listing-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.filterbox {
+    background-color: grey;
+    width: 300px;
+    margin-top: 10px;
+}
+
+.find-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
 
