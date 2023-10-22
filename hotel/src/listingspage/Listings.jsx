@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Listings.css";
 import ListingCard from "../listingcard/ListingCard";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendarDay, FaGlobeAmericas } from "react-icons/fa";
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
@@ -45,18 +48,22 @@ const Listings = () => {
   const handleChange = (event) => {
     searchQuery = event.target.value;
   };
-  /* const listings1 = [
-    { name: "Marriott", city: "San Jose, CA", rating: "4.7", price: "$150" },
-    { name: "Hilton", city: "Santa Clara, CA", rating: "4.3", price: "$175" },
-    { name: "Hyatt", city: "Sunnyvale, CA", rating: "4.5", price: "$200" },
-    { name: "Motel 6", city: "Cupertino, CA", rating: "3.8", price: "$100" },
-    {
-      name: "Intercontinental",
-      city: "Milpitas, CA",
-      rating: "4.9",
-      price: "$300",
-    },
-  ]; */
+
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+
+  //used to inbed icon in the datepicker
+  const CustomDatePickerInput = ({ value, onClick, placeholderText }) => (
+    <div className="my-datepicker" onClick={onClick}>
+      <FaCalendarDay />
+      {value === "" ? (
+        <p style={{ color: "#A9A9A9" }}>{placeholderText}</p>
+      ) : (
+        <p>{value}</p>
+      )}
+    </div>
+  );
+
   return (
     <div className="listings">
       <div className="header-bar">
@@ -67,6 +74,20 @@ const Listings = () => {
             placeholder="Where Would You Like To Go?"
             onChange={handleChange}
           />
+          <FaGlobeAmericas className="search-icon" />
+        </div>
+        <DatePicker
+          selected={start}
+          onChange={(date) => setStart(date)}
+          customInput={<CustomDatePickerInput placeholderText="Check-in" />}
+        />
+        <DatePicker
+          placeholder="Check-out"
+          selected={end}
+          onChange={(date) => setEnd(date)}
+          customInput={<CustomDatePickerInput placeholderText="Check-out" />}
+        />
+        <div className="form-item">
           <button
             className="search-button"
             type="submit"
@@ -75,12 +96,14 @@ const Listings = () => {
             Search
           </button>
         </div>
-        <h2>Current Listings</h2>
       </div>
-      <div className="listing-cards">
-        {listings.map((listing) => (
-          <ListingCard listing={listing} />
-        ))}
+      <div className="find-body">
+        <div className="filterbox"></div>
+        <div className="listing-cards">
+          {listings.map((listing) => (
+            <ListingCard listing={listing} />
+          ))}
+        </div>
       </div>
     </div>
   );

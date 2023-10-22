@@ -1,39 +1,43 @@
 .listing-card {
-    height: 450px;
-    border: 1px solid #999999;
-    width: 30%;
-    margin: 24px;
-    border-radius: 24px;
-    padding: 8px;
+    height: 220px;
+    border: 1px solid #CCCCCC;
+    width: auto;
+    margin: 16px;
+    border-radius: 10px;
     background-color: #FFFFFF;
-}
-
-.listing-image-box {
-    border: 1px solid #999999;
-    border-radius: 24px;
-    width: 100%;
-    height: 337px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 0px 3px lightgray
 }
 
 .listing-image {
-    height: 100%;
-    width: 100%;
+    height: 220px;
+    border-radius: 9px 0px 0px 9px;
+    aspect-ratio: 16/9;
 }
 
 .listing-card:hover {
-    background-color: #EEEEEE;
-    box-shadow: 0px 0px 5px #14213D;
+    background-color: #EFEFEF;
+    box-shadow: 0px 0px 5px #CCCCCC;
 }
 
 .listing-details {
     height: 100%;
-     justify-content: space-evenly;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 20px;
+    padding: 0px 20px
 }
+
+.listing-info h2 {
+    margin: 0;
+}
+
+.listing-info p {
+    margin: 3px 0px;
+}
+
+
 
 .listing-name {
     font-size: 36px;
@@ -41,13 +45,19 @@
 
 .listing-info{
     font-family: sans-serif;
-    height: 25%;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 
 .listing-price {
-transform: translateY(-4px);
-    padding: 0 16px;
-    margin-left: auto;
     font-size: 44px;
 }
+
+.bottom-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0px;
+}
+
+
