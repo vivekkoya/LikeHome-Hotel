@@ -4,7 +4,7 @@ const Listing = require('./listings.js');
 
 application.use(express.json());
 
-application.get('/api/hotels', async(req, res) => {
+application.get('/hotels', async(req, res) => {
   try {
     const{beds, price, hotelName, amenities, accessabilities} = req.query;
     const query = {};
