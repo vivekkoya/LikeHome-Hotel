@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
 
 const MakeReservation = () => {
-  const { id } = useParams();
+  const { id, StartDate, EndDate } = useParams();
   const [details, setDetails] = useState({
     // Provide initial values for properties
     hotel_name: "Default Name",
@@ -42,9 +42,6 @@ const MakeReservation = () => {
     })();
   }, [id]);
 
-  const defstart = new Date("11/11/2011");
-  const defend = new Date("11/14//2011");
-
   const [options, setOptions] = useState([]);
   const [people, setPeople] = useState([
     {
@@ -52,8 +49,8 @@ const MakeReservation = () => {
       value: 1,
     },
   ]);
-  const [start, setStart] = useState(defstart);
-  const [end, setEnd] = useState(defend);
+  const [start, setStart] = useState(new Date(StartDate));
+  const [end, setEnd] = useState(new Date(EndDate));
 
   const generateOptions = (maxPeople) => {
     console.log(details);
@@ -134,7 +131,7 @@ const MakeReservation = () => {
             </div>
             <div>
               <h1>${details.price}</h1>
-              <p className="address"> per person per night</p>
+              <p className="address"> per night</p>
             </div>
           </div>
           <div className="line-after"></div>
@@ -159,12 +156,7 @@ const MakeReservation = () => {
           <div className="line-after"></div>
           <div className="price-people">
             <p> {(end - start) / 86400000} nights</p>
-            <p>
-              Total: $
-              {details.price *
-                (people[0]?.value || 1) *
-                ((end - start) / 86400000)}
-            </p>
+            <p>Total: ${details.price * ((end - start) / 86400000) * 1.11}</p>
           </div>
         </div>
       </div>
