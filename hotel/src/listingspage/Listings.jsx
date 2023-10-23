@@ -8,7 +8,7 @@ import { FaCalendarDay, FaGlobeAmericas } from "react-icons/fa";
 const Listings = () => {
   const [listings, setListings] = useState([]);
   // const [location, setLocation] = useState(null);
-  let searchQuery = "";
+  const [searchQuery, setSearchQuery] = useState("");
 
   // useEffect(() => {
   //   (async () => {
@@ -33,7 +33,7 @@ const Listings = () => {
     const search = searchQuery.replace(" ", "%20");
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${searchQuery}`
+        `http://localhost:5001/listings/ListingInCity/${search}`
       );
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
@@ -46,7 +46,7 @@ const Listings = () => {
   };
 
   const handleChange = (event) => {
-    searchQuery = event.target.value;
+    setSearchQuery(event.target.value);
   };
 
   const [start, setStart] = useState("");
@@ -101,7 +101,7 @@ const Listings = () => {
         <div className="filterbox"></div>
         <div className="listing-cards">
           {listings.map((listing) => (
-            <ListingCard listing={listing} />
+            <ListingCard listing={listing} start={start} end={end} />
           ))}
         </div>
       </div>

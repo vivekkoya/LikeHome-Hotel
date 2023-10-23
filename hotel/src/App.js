@@ -36,7 +36,7 @@ function App() {
           <Route  path="/hotelviewbookings" element={<h1>Hotel Bookings Page</h1>}/>
           <Route  path="/search" element={<Listings/>}/>
           <Route  path="/" element={<p>home page</p>}/>
-          <Route  path="/search/reservation/:id" element={<MakeReservation/>}/>
+          <Route  path="/search/reservation/:id/:StartDate/:EndDate" element={<MakeReservation/>}/>
         </Routes>
       </Router>
     </>

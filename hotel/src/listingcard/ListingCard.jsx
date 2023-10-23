@@ -14,14 +14,16 @@ const ListingCard = (props) => {
   const price = listing.price;
   const img = listing.imgurl[0];
 
+  console.log(props);
+
   const handleClick = () => {
-    window.location.href = `/search/reservation/${listing._id}`;
+    window.location.href = `/search/reservation/${listing._id}/${props.start}/${props.end}`;
   };
 
   return (
     <div className="listing-card" onClick={handleClick}>
       <div className="listing-image-box">
-        <img className="listing-image" src={img} alt="Listing Image"></img>
+        <img className="listing-image" src={`${img}`} alt="Listing Image"></img>
       </div>
       <div className="listing-info">
         <div className="listing-details">
