@@ -17,8 +17,8 @@ router.get('/hotels', async(req, res) => {
       if(priceMin) {
         filter.price.$gte = parseInt(priceMin);
       }
-      if(pricemax) {
-        filter.price.$gte = parseInt(priceMax);
+      if(priceMax) {
+        filter.price.$lte = parseInt(priceMax);
       }
     }
 
