@@ -96,37 +96,6 @@ body {
     justify-content: space-evenly;
 }
 
-.items-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: center ;
-    margin: 0px;
-}
-
-.items-list h2 {
-    margin: 0px;
-    font-weight: 425;
-    font-size: 25px
-}
-
-.items-list li {
-    list-style: none;
-    text-align: center;
-    padding: 3px;
-    color: #707070
-}
-
-.items-list ul {
-    padding: 0px;
-    height: 100px;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center
-}
-
 .price-people  {
     display: flex;
     flex-direction: row;

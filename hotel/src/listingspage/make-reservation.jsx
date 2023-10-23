@@ -4,6 +4,7 @@ import "./Reservation.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
+import LogoList from "../reservation/LogoList";
 
 const MakeReservation = () => {
   const { id, StartDate, EndDate } = useParams();
@@ -136,22 +137,8 @@ const MakeReservation = () => {
           </div>
           <div className="line-after"></div>
           <div className="listers">
-            <div className="items-list">
-              <h2>Amenities</h2>
-              <ul>
-                {details.amenities.map((option) => (
-                  <li key={option}>{option}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="items-list">
-              <h2>Accessibility</h2>
-              <ul>
-                {details.accessability.map((option) => (
-                  <li key={option}>{option}</li>
-                ))}
-              </ul>
-            </div>
+            <LogoList title="Amenities" list={details.amenities} />
+            <LogoList title="Accessibility" list={details.accessability} />
           </div>
           <div className="line-after"></div>
           <div className="price-people">

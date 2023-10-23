@@ -2,6 +2,7 @@ import React from "react";
 import "./card.css";
 
 const ReservationCard = (Props) => {
+  const reservation = Props.reservation;
   // const reservation = {
   //     hotel_name: "Hotel Name",
   //     price: 100,
@@ -26,11 +27,17 @@ const ReservationCard = (Props) => {
     <div className="reservation-card">
       <img
         className="reservation-image"
-        src={Props.reservation.imgurl[0]}
+        src={reservation.imgurl[0]}
         alt="reservation photo"
       />
       <div className="info-card">
-        <div className="listing-info ">listing-info</div>
+        <div className="listing-info ">
+          <h1>{reservation.hotel_name}</h1>
+          <p>
+            {reservation.location.address} {reservation.location.city},{" "}
+            {reservation.location.state}
+          </p>
+        </div>
         <div className="reservation-info ">reservation-info</div>
       </div>
     </div>
