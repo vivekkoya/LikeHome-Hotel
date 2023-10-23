@@ -28,9 +28,9 @@ router.get('/createListing', async (req, res) => {
 })
 
 
-router.get('/getListings', async (req, res) => {
+router.get('/getListings/:id', async (req, res) => {
     try {
-        const postListing = await Listing.find().lean()
+        const postListing = await Listing.find({'_id': req.params.id}).lean()
 
         console.log(postListing)
 

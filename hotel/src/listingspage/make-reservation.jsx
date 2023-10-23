@@ -7,29 +7,56 @@ import Select from "react-dropdown-select";
 
 const MakeReservation = () => {
   const { id } = useParams();
-  console.log(id);
-  const details = {
-    name: "Hotel Name",
-    city: "San Jose",
-    address: "123 Main Street",
-    amenities: ["Spa", "Pool", "Continental Breakfast", "Free Wifi"],
-    accessibility: ["Elevator", "WheelChair Accesible", "ASL Trained Staff"],
-    price: 325,
-    max_people: 3,
-    start: new Date("12/11/2023"),
-    end: new Date("12/12/2023"),
-    img_url:
-      "https://hoteldel.com/wp-content/uploads/2021/03/hotel-del-coronado-views-suite-K1TOS1-K1TOJ1-1600x1000-1.jpg",
-  };
+  const [details, setDetails] = useState({
+    // Provide initial values for properties
+    hotel_name: "Default Name",
+    location: {
+      city: "Name",
+      address: "address",
+    },
+    amenities: [],
+    accessability: [],
+    price: 0,
+    room_details: {
+      max_people: 1,
+    },
+    imgurl: ["images/Listing1.jpeg"],
+  });
+
+  useEffect(() => {
+    (async () => {
+      console.log("start fetch");
+      try {
+        const response = await fetch(
+          `http://localhost:5001/listings/getListings/${id}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setDetails(data[0]);
+        console.log(details);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    })();
+  }, [id]);
+
+  const defstart = new Date("11/11/2011");
+  const defend = new Date("11/14//2011");
 
   const [options, setOptions] = useState([]);
   const [people, setPeople] = useState([
-    { label: details.max_people, value: details.max_people },
+    {
+      label: 1,
+      value: 1,
+    },
   ]);
-  const [start, setStart] = useState(details.start);
-  const [end, setEnd] = useState(details.end);
+  const [start, setStart] = useState(defstart);
+  const [end, setEnd] = useState(defend);
 
   const generateOptions = (maxPeople) => {
+    console.log(details);
     const newOptions = [];
     for (let i = 1; i <= maxPeople; i++) {
       newOptions.push({
@@ -49,9 +76,9 @@ const MakeReservation = () => {
   const [zipcode, setZipcode] = useState("");
 
   useEffect(() => {
-    const newOptions = generateOptions(details.max_people);
+    const newOptions = generateOptions(details.room_details.max_people);
     setOptions(newOptions);
-  }, [details.max_people]);
+  }, [details.room_details.max_people]);
 
   const handleReserve = () => {
     if (!payEmail || !cardNum || !expireDate || !cvc || !name || !zipcode) {
@@ -64,7 +91,11 @@ const MakeReservation = () => {
   return (
     <div className="reservation-page">
       <div className="hotelbox">
-        <img className="hotel-img" src={details.img_url} />
+        <img
+          className="hotel-img"
+          src={`/${details.imgurl[0]}`}
+          alt="image note loaded"
+        />
         <div className="image-box">
           <div className="info-form">
             <div className="form-item">
@@ -96,9 +127,9 @@ const MakeReservation = () => {
           <div className="line-after"></div>
           <div className="title">
             <div>
-              <h1>{details.name}</h1>
+              <h1>{details.hotel_name}</h1>
               <p className="address">
-                {details.city}, {details.address}{" "}
+                {details.location.city}, {details.location.address}{" "}
               </p>
             </div>
             <div>
@@ -119,7 +150,7 @@ const MakeReservation = () => {
             <div className="items-list">
               <h2>Accessibility</h2>
               <ul>
-                {details.accessibility.map((option) => (
+                {details.accessability.map((option) => (
                   <li key={option}>{option}</li>
                 ))}
               </ul>
@@ -130,7 +161,9 @@ const MakeReservation = () => {
             <p> {(end - start) / 86400000} nights</p>
             <p>
               Total: $
-              {details.price * people[0].value * ((end - start) / 86400000)}
+              {details.price *
+                (people[0]?.value || 1) *
+                ((end - start) / 86400000)}
             </p>
           </div>
         </div>

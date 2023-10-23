@@ -47,7 +47,7 @@ body {
 }
 
 .hotel-img {
-    max-height: 400px;
+    height: 400px;
     aspect-ratio: 16/9;
 }
 
