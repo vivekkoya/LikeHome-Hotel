@@ -1,0 +1,24 @@
+.items-list p{
+ padding:0px;
+ margin: 0px 0px 0px 5px;
+}
+
+.items-list h2 {
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+}
+
+.items-list li {
+    list-style: none;
+    display: flex;
+    color: darkgrey;
+
+}
+
+.data-row {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 5px;
+}

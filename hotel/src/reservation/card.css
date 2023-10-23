@@ -19,11 +19,9 @@
     flex-direction: row;
 }
 
-.info {
-    width: 425px;
-    height: 400px;
-}
 
 .listing-info {
     width: 425px;
+    height: 400px;
+    
 }
