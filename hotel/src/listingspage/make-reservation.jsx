@@ -20,7 +20,7 @@ const MakeReservation = () => {
     room_details: {
       max_people: 1,
     },
-    imgurl: ["images/Listing1.jpeg"],
+    imgurl: ["/images/Listing1.jpeg"],
   });
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const MakeReservation = () => {
       <div className="hotelbox">
         <img
           className="hotel-img"
-          src={`/${details.imgurl[0]}`}
+          src={`${details.imgurl[0]}`}
           alt="image note loaded"
         />
         <div className="image-box">
@@ -156,7 +156,10 @@ const MakeReservation = () => {
           <div className="line-after"></div>
           <div className="price-people">
             <p> {(end - start) / 86400000} nights</p>
-            <p>Total: ${details.price * ((end - start) / 86400000) * 1.11}</p>
+            <p>
+              Total: $
+              {Math.trunc(details.price * ((end - start) / 86400000) * 1.08)}
+            </p>
           </div>
         </div>
       </div>

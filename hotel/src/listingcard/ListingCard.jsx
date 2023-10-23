@@ -23,11 +23,7 @@ const ListingCard = (props) => {
   return (
     <div className="listing-card" onClick={handleClick}>
       <div className="listing-image-box">
-        <img
-          className="listing-image"
-          src={`/${img}`}
-          alt="Listing Image"
-        ></img>
+        <img className="listing-image" src={`${img}`} alt="Listing Image"></img>
       </div>
       <div className="listing-info">
         <div className="listing-details">
