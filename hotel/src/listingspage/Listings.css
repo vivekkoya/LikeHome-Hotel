@@ -32,7 +32,8 @@ h2 {
 }
 
 .my-datepicker p {
-    margin-left: 15px
+    margin-left: 15px;
+    margin-bottom: 0px;
 }
 
 .search-text-field {
