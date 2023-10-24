@@ -16,8 +16,23 @@ const ReservationPage = () => {
     imgurl: [
       "https://hotelandra.com/wp-content/uploads/2022/01/Andra2483-Andra-Queen-Queen.jpg",
     ],
-    start_date: new Date("12/13/20023"),
+    start_date: new Date("12/13/2023"),
     end_date: new Date("12/14/2023"),
+    amenities: [
+      "Pool",
+      "Free Wifi",
+      "Air Conditioning",
+      "Bar",
+      "Laundry Facilities",
+      "Breakfast",
+      "Gym",
+    ],
+    accessibility: [
+      "WheelChair Accessible",
+      "Staff Asl Trained",
+      "Non-smoking",
+      "Mulitlingual Staff",
+    ],
     room_details: {
       beds: 2,
       bathrooms: 1,
