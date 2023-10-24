@@ -73,12 +73,31 @@ code {
 }
 
 .user-name {
-  color: white;
   background: none;
   border: none;
   font-size: 1.5rem;
+  font-weight: 600;
+  color: #fbb03b
 }
 
-.user-name:hover{
-  color: #Fbb038
+.User-row {
+  color: #fbb03b;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  justify-content: center;
+  align-items:center;
+  font-size: 1.5rem;
+  border: 3px solid #fbb03b;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.User-row:hover {
+  color: #14213d;
+  background-color: #fbb03b
+}
+
+.User-row:hover button {
+  color:#14213D !important
 }

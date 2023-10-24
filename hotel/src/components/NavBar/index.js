@@ -1,5 +1,6 @@
 import React from 'react'
 import { useCookies } from "react-cookie"
+import { FaUser } from "react-icons/fa"
 
 
 
@@ -36,10 +37,15 @@ const NavBar = () => {
         </ul>
         <ul className="row">
             <li>
-                { user === "" && <a className="button-link" href="/login">Sign In</a>}
+                
+                { user === "" && 
+                    <a className="button-link" href="/login">Sign In</a> }
             </li>
             <li>
-                { user !== "" && <button className="user-name" onClick={logout}>{user}</button>}
+                { user !== "" && <div className="User-row">
+                    <FaUser/>
+                    <button className="user-name" onClick={logout}>{user}</button>
+                    </div> }
             </li>
         </ul>
     </nav>
