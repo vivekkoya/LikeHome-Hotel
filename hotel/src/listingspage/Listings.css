@@ -2,16 +2,17 @@
     padding: 20px;
 }
 
-h2{
+h2 {
     padding-top: 12px;
     color: #14213D;
     text-align: center;
 }
-.header-bar{
+
+.header-bar {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 20px; 
+    margin-top: 20px;
     padding-right: 23px;
 }
 
@@ -28,30 +29,33 @@ h2{
     border: 1px solid #14213D;
     margin: 0 15px 0 0;
     background: white
-
 }
 
 .my-datepicker p {
     margin-left: 15px
 }
-.search-text-field{
+
+.search-text-field {
     border: 1px solid #14213D;
     margin: 0 5px 0 0;
     border-radius: 10px;
     width: 400px;
     height: 36px;
     padding: 0 32px;
-    font-size:16px
+    font-size: 16px
 }
 
 .search-icon {
     margin: 0;
-    top: 50%; /* Vertically center the icon */
-    left: 10px; /* Adjust the value to position the icon */
+    top: 50%;
+    /* Vertically center the icon */
+    left: 10px;
+    /* Adjust the value to position the icon */
     transform: translatex(-2875%) translatey(10%);
     z-index: 10;
 }
-.search-button{
+
+.search-button {
     border-radius: 10px;
     height: 36px;
     width: fit-content;
@@ -85,4 +89,46 @@ h2{
 
 
 
+.filter-button {
+    border-radius: 10px;
+    height: 36px;
+    width: fit-content;
+    color: #F9F8F8;
+    background-color: #14213E;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 4px 8px;
+}
 
+.side-menu {
+    width: 250px;
+    height: 50%;
+    background-color: #c2c9ea;
+    color: rgb(0, 0, 0);
+    position: fixed;
+    top: 100;
+    left: -250px;
+    transition: left 0.3s;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+label {
+    display: block;
+    margin: 20px;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+button {
+    height: 30px;
+    width: fit-content;
+    color: #F9F8F8;
+    background-color: #14213E;
+    font-size: 1rem;
+}
