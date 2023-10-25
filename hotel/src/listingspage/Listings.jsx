@@ -9,6 +9,13 @@ const Listings = () => {
   const [listings, setListings] = useState([]);
   // const [location, setLocation] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  // below are all variables used for filtering
+  const[minPrice, setMinPrice] = useState("");
+  const[maxPrice, setMaxPrice] = useState("");
+  const[beds, setBeds] = useState("");
+  const[people, setPeople] = useState("");
+  const[amenities, setAmenities] = useState("");
+  const[accessibility, setAccessibility] = useState("");
 
   // useEffect(() => {
   //   (async () => {

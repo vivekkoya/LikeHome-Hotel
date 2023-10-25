@@ -1,46 +1,42 @@
-const express = require('express');
 const mongoose = require('mongoose');
-const Listing = require('./listings.js');
-const router = express.Router();
+const Listing = mongoose.model('Listing');
 
-router.get('/hotels', async(req, res) => {
+async function filter(city, priceMin, priceMax, beds, maxPeople, amenities, accessibility) {
   try {
-    const{beds, priceMin, priceMax, hotelName, amenities, accessability} = req.query;
-    const filter = {};
+    const query = {
+      'location.city': city,
+    };
 
-    if(beds) {
-      filter['room_details.bed'] = {$gte: parseInt(beds)};
-    }
-
-    if(priceMin || priceMax) {
+    if (priceMin || priceMax) {
       filter.price = {};
       if(priceMin) {
         filter.price.$gte = parseInt(priceMin);
       }
-      if(priceMax) {
+      if (priceMax) {
         filter.price.$lte = parseInt(priceMax);
       }
     }
 
-    if(hotelName) {
-      filter.hotel_name = new RegExp(hotelName, 'i');
+    if (beds) {
+      filter['room_details.beds'] = beds;
     }
 
-    if(amenities) {
-      filter.amenities = {$all: amenities.split(',')};
+    if (people) {
+      filter['room_details.max_people'] = maxPeople;
     }
 
-    if(accessability) {
-      filter.accessability = {$in: accessability.split(',')};
+    if (amenities) {
+      filter.amenities = {$all: amenities};
     }
 
-    const hotels = await Listing.find(filter);
+    if (accessibility) {
+      filter,accessibility = {$all: accessibility};
+    }
 
-    res.json(hotels);
-  } catch(error) {
-    console.error(error);
-    res.status(500).json({message: 'Server error'});
+    const hotels = await Listing.find(query);
+
+    return hotels;
+  } catch (error) {
+    throw error;
   }
-});
-
-module.exports = router;
+}
