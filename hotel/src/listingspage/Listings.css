@@ -122,8 +122,15 @@ label {
     cursor: pointer;
 }
 
+input[type="checkbox"] {
+    margin-right: 15px;
+  }
+
 input[type="range"] {
     width: 100%;
+}
+input[type=checkbox] {
+    width:20px; height:20px;
 }
 
 button {
@@ -132,4 +139,6 @@ button {
     color: #F9F8F8;
     background-color: #14213E;
     font-size: 1rem;
+    margin: 0 auto;
+    display: block;
 }

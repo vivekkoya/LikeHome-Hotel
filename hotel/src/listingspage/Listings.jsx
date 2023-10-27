@@ -10,12 +10,12 @@ const Listings = () => {
   // const [location, setLocation] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   // below are all variables used for filtering
-  const[minPrice, setMinPrice] = useState("");
-  const[maxPrice, setMaxPrice] = useState("");
-  const[beds, setBeds] = useState("");
-  const[people, setPeople] = useState("");
-  const[amenities, setAmenities] = useState("");
-  const[accessibility, setAccessibility] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [beds, setBeds] = useState("");
+  const [people, setPeople] = useState("");
+  const [amenities, setAmenities] = useState("");
+  const [accessibility, setAccessibility] = useState("");
 
   // useEffect(() => {
   //   (async () => {
@@ -59,15 +59,21 @@ const Listings = () => {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
 
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [sliderValues, setSliderValues] = useState({
-    slider1: 0,
-    slider2: 0,
-    slider3: 0,
-    slider4: 0,
-  });
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [inputValues, setInputValues] = useState({ beds: '', people: '' });
+  const [sliderValues, setSliderValues] = useState({ slider1: 0 });
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+
+    if (checked) {
+      setSelectedCheckboxes([...selectedCheckboxes, value]);
+    } else {
+      setSelectedCheckboxes(selectedCheckboxes.filter(option => option !== value));
+    }
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
   };
   const handleSliderChange = (event) => {
     const { name, value } = event.target;
@@ -77,9 +83,9 @@ const Listings = () => {
     });
   };
   const applyChanges = () => {
-    console.log('Slider value:', sliderValues);
-
-    setMenuOpen(false);
+    console.log('Selected checkboxes:', selectedCheckboxes);
+    console.log('Slider values:', sliderValues);
+    console.log('Input values:', inputValues);
   };
 
   //used to inbed icon in the datepicker
@@ -97,65 +103,6 @@ const Listings = () => {
   return (
     <div className="listings">
       <div className="header-bar">
-        <div className="form-item">
-          <button
-            className="filter-button"
-            id="menuToggle"
-            onClick={toggleMenu}>
-            Filter</button>
-        </div>
-        <div className={`side-menu ${menuOpen ? 'open' : ''}`}>
-          <h2>Filter Options</h2>
-          <label>
-            Price
-            <input
-              type="range"
-              name="slider1"
-              min="0"
-              max="100000"
-              value={sliderValues.slider1}
-              onChange={handleSliderChange}
-            />
-            <div>Value: {sliderValues.slider1}</div>
-          </label>
-          <label>
-            Beds
-            <input
-              type="range"
-              name="slider2"
-              min="0"
-              max="10"
-              value={sliderValues.slider2}
-              onChange={handleSliderChange}
-            />
-            <div>Value: {sliderValues.slider2}</div>
-          </label>
-          <label>
-            Amenities
-            <input
-              type="range"
-              name="slider3"
-              min="0"
-              max="100"
-              value={sliderValues.slider3}
-              onChange={handleSliderChange}
-            />
-            <div>Value: {sliderValues.slider3}</div>
-          </label>
-          <label>
-            Accessibilities
-            <input
-              type="range"
-              name="slider4"
-              min="0"
-              max="100"
-              value={sliderValues.slider4}
-              onChange={handleSliderChange}
-            />
-            <div>Value: {sliderValues.slider4}</div>
-          </label>
-          <button onClick={applyChanges}>Apply Changes</button>
-        </div>
         <div className="search-bar">
           <input
             className="search-text-field"
@@ -187,8 +134,67 @@ const Listings = () => {
         </div>
       </div>
       <div className="find-body">
-        <div className="filterbox"></div>
-        <div className="listing-cards">
+        <div className="filterbox">
+          <h2>Filter Options</h2>
+          <label>
+            Price
+            <input
+              type="range"
+              name="slider1"
+              min="100"
+              max="1000"
+              value={sliderValues.slider1}
+              onChange={handleSliderChange}
+            />
+            <div>Value: {sliderValues.slider1}</div>
+          </label>
+          <label>
+            Beds:
+            <input
+              type="text"
+              name="beds"
+              value={inputValues.beds}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            People:
+            <input
+              type="text"
+              name="people"
+              value={inputValues.people}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="Pool"
+              checked={selectedCheckboxes.includes('Pool')}
+              onChange={handleCheckboxChange}
+            />
+            Pool
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="Gym"
+              checked={selectedCheckboxes.includes('Gym')}
+              onChange={handleCheckboxChange}
+            />
+            Gym
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="Wheelchair Accessible"
+              checked={selectedCheckboxes.includes('Wheelchair Accessible')}
+              onChange={handleCheckboxChange}
+            />
+            Wheelchair Accessible
+          </label>
+          <button onClick={applyChanges}>Apply Changes</button>
+        </div>        <div className="listing-cards">
           {listings.map((listing) => (
             <ListingCard listing={listing} start={start} end={end} />
           ))}
