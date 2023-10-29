@@ -23,13 +23,13 @@ const HotelSchema = mongoose.Schema({
     // determine if user is admin or customer
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: false
     },
 
     // listing of all hotel elements
     listings: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Listing',
+      ref: 'Listing'
     }]
 });
 
