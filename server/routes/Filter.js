@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Listing = mongoose.model('Listing');
 
-async function filter(city, priceMin, priceMax, beds, maxPeople, amenities, accessibility) {
+async function filter(city, priceMin, priceMax, beds, people, amenities, accessibility) {
   try {
     const query = {
       'location.city': city,
@@ -30,13 +30,14 @@ async function filter(city, priceMin, priceMax, beds, maxPeople, amenities, acce
     }
 
     if (accessibility) {
-      filter,accessibility = {$all: accessibility};
+      filter.accessibility = {$all: accessibility};
     }
 
     const hotels = await Listing.find(query);
 
     return hotels;
-  } catch (error) {
-    throw error;
+  } catch(error) {
+    console.error(error);
+    res.status(500).json({message: 'Server error'});
   }
 }
