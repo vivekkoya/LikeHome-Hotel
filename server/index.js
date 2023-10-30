@@ -6,6 +6,7 @@ import cors from 'cors'
 
 import listingRoutes from './routes/listings.js'
 import hotelRoutes from './routes/HotelLogin.js'
+import bookingRoutes from './routes/BookingsRoutes.js'
 
 const app = express()
 
@@ -25,6 +26,7 @@ mongoose
 
 app.use('/listings', listingRoutes)
 app.use('/user', hotelRoutes)
+app.use('/booking', bookingRoutes)
 
 // Basic app get request for info
 app.get('/', (req, res) => {
