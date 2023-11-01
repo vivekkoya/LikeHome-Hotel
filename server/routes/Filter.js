@@ -22,7 +22,7 @@ async function filter(city, priceMin, priceMax, beds, people, amenities, accessi
     }
 
     if (people) {
-      filter['room_details.max_people'] = maxPeople;
+      filter['room_details.max_people'] = people;
     }
 
     if (amenities) {
