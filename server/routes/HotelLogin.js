@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
 		const passwordMatches = await bcrypt.compare(password, existingHotel.password);
 	
 		if (passwordMatches) {
-		  return res.status(200).json({ message: 'User Authenticated', isAdmin: existingHotel.isAdmin });
+		  return res.status(200).json({ message: 'User Authenticated', isAdmin: existingHotel.isAdmin, id: existingHotel._id});
 		} else {
 		  return res.status(403).json({ message: 'Incorrect Password' });
 		}

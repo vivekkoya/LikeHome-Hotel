@@ -40,14 +40,15 @@ export function LoginForm(props) {
       if (!response.ok) {
         alert("incorrect credentials");
       } else {
-        setCookie("user", email, { path: "/" });
+        setCookie("user", email, "/");
         const data = await response.json();
+        setCookie("id", data.id, { path: "/" });
         if (data.isAdmin) {
           setCookie("isAdmin", "hotel", "/");
         } else {
           setCookie("isAdmin", "client", "/");
         }
-        window.location.href = "/search";
+        //window.location.href = "/search";
       }
     } catch (error) {
       alert(error.message);

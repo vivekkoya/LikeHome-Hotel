@@ -5,22 +5,17 @@ const router = express.Router();
 
 // Create a new booking
 router.post('/', async(req, res) => {
+  console.log(req)
   try {
-    const{user, listing, checkInDate, checkOutDate, guests} = req.body;
+    const booking = req.body.booking;
 
-    const newBooking = new Booking({
-      user,
-      listing,
-      checkInDate,
-      checkOutDate,
-      guests
-    });
+    const newBooking = new Booking(booking)
 
     const savedBooking = await newBooking.save();
     res.status(201).json(savedBooking);
   } catch (error) {
     console.error(error);
-    res.status(500).json({message: ' Booking fialed'});
+    res.status(500).json({message: ' Booking failed'});
   }
 });
 

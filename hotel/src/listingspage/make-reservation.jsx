@@ -5,8 +5,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
 import LogoList from "../reservation/LogoList";
+import { useCookies } from "react-cookie";
 
 const MakeReservation = () => {
+  const [cookies, setStates] = useCookies(["users"]);
   const { id, StartDate, EndDate } = useParams();
   const [details, setDetails] = useState({
     // Provide initial values for properties
@@ -78,12 +80,33 @@ const MakeReservation = () => {
     setOptions(newOptions);
   }, [details.room_details.max_people]);
 
-  const handleReserve = () => {
+  const handleReserve = async () => {
     if (!payEmail || !cardNum || !expireDate || !cvc || !name || !zipcode) {
       alert("missing information");
       return;
     }
-    window.location.href = "/viewreservations";
+    console.log(people);
+    console.log(cookies.id);
+    const booking = {
+      user: cookies.id,
+      listing: id,
+      checkInDate: start,
+      checkOutDate: end,
+      guests: people[0].value,
+    };
+    console.log(booking);
+    const res = await fetch("http://localhost:5001/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ booking }),
+    });
+    if (res.status === 201) {
+      window.location.href = "/viewreservations";
+    } else {
+      alert("Error");
+    }
   };
 
   return (
@@ -142,7 +165,7 @@ const MakeReservation = () => {
           </div>
           <div className="line-after"></div>
           <div className="price-people">
-            <p> {(end - start) / 86400000} nights</p>
+            <p> {Math.trunc((end - start) / 86400000)} nights</p>
             <p>
               Total: $
               {Math.trunc(details.price * ((end - start) / 86400000) * 1.08)}
