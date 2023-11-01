@@ -64,6 +64,7 @@ router.get('/ListingInCity/:city', async (req, res) => {
     console.log(req.params.city)
     const city = req.params.city
     const {priceMin, priceMax, beds, people, amenities, accessibility} = req.query;
+    const query = {'location.city': city};
     
     if (priceMin) {
         query['price'] = {$gte: parseInt(priceMin)};
@@ -93,8 +94,8 @@ router.get('/ListingInCity/:city', async (req, res) => {
     }
 
     try {
-        const listing = await Listing.find({ 'location.city': city }).lean();
-        res.status(200).json(listing)
+        // const listing = await Listing.find({ 'location.city': city }).lean();
+        // res.status(200).json(listing)
         const filteredListings = await Listing.find(query).lean();
         res.status(200).json(filteredListings);
     } catch (error) {
