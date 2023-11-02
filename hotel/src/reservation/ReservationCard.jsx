@@ -53,7 +53,7 @@ const ReservationCard = (Props) => {
             room_details: data[0].room_details,
             num_people: data[0].num_people,
             amenities: data[0].amenities,
-            accessibility: data[0].accessibility,
+            accessibility: data[0].accessability,
           });
           console.log(reservation);
         } else {
