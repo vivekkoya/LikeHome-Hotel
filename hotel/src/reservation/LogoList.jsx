@@ -16,6 +16,9 @@ import {
 
 const LogoList = (Props) => {
   console.log(Props.list);
+  if (!Props.list) {
+    return <p>no list</p>;
+  }
   const textLogoPairs = new Map();
   textLogoPairs.set("Pool", <FaSwimmer />);
   textLogoPairs.set("Free Wifi", <FaWifi />);

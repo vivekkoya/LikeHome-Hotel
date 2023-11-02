@@ -20,9 +20,10 @@ router.post('/', async(req, res) => {
 });
 
 // Get a list of all bookings
-router.get('/', async(req, res) => {
+router.get('/:id', async(req, res) => {
   try {
-    const bookings = await Booking.find();
+    const {id} = req.params
+    const bookings = await Booking.find({'user': id});
     res.status(200).json(bookings);
   } catch (error) {
     console.error(error);

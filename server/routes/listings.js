@@ -4,7 +4,7 @@ const router = express.Router();
 
 import Listing from '../models/listing.js'
 
-//localhost:5001/lisitngs
+//localhost:5001/listngs
 
 router.get('/', (req, res) => {
     try {

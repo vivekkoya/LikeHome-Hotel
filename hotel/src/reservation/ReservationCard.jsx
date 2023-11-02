@@ -1,29 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./card.css";
 import LogoList from "./LogoList";
 import { FaBed, FaToilet, FaUser } from "react-icons/fa";
 
 const ReservationCard = (Props) => {
-  const reservation = Props.reservation;
-  // const reservation = {
-  //     hotel_name: "Hotel Name",
-  //     price: 100,
-  //     location: {
-  //       state: "California",
-  //       city: "San Jose",
-  //       address: "123 Main Street"
-  //     },
-  //     check_in: "3:00pm",
-  //     check_out: "10:00am",
-  //     imgurl: ["https://hotelandra.com/wp-content/uploads/2022/01/Andra2483-Andra-Queen-Queen.jpg"],
-  //     start_date: new Date("12/13/20023"),
-  //     end_date: new Date("12/14/2023"),
-  //     room_details: {
-  //       beds: 2,
-  //       bathrooms: 1
-  //     },
-  //     num_people: 4
-  //   }
+  const booking = Props.reservation;
+  const [reservation, setReservation] = useState({
+    hotel_name: "Hotel Name",
+    price: 100,
+    location: {
+      state: "California",
+      city: "San Jose",
+      address: "123 Main Street",
+    },
+    check_in: "3:00pm",
+    check_out: "10:00am",
+    imgurl: [
+      "https://hotelandra.com/wp-content/uploads/2022/01/Andra2483-Andra-Queen-Queen.jpg",
+    ],
+    start_date: new Date("12-13-2023"),
+    end_date: new Date("12-14-2023"),
+    room_details: {
+      beds: 2,
+      bathrooms: 1,
+    },
+    num_people: 4,
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log(
+          `http://localhost:5001/listing/getListings/${booking.listing}`
+        );
+        const response = await fetch(
+          `http://localhost:5001/listings/getListings/${booking.listing}`
+        );
+        if (response.status === 200) {
+          console.log("response 200");
+          const data = await response.json();
+          console.log(data[0]);
+          console.log(data[0].imgurl);
+          await setReservation({
+            hotel_name: data[0].hotel_name,
+            price: data[0].price,
+            location: data[0].location,
+            check_in: data[0].check_in,
+            check_out: data[0].check_out,
+            imgurl: data[0].imgurl,
+            start_date: new Date(booking.checkInDate),
+            end_date: new Date(booking.checkOutDate),
+            room_details: data[0].room_details,
+            num_people: data[0].num_people,
+            amenities: data[0].amenities,
+            accessibility: data[0].accessibility,
+          });
+          console.log(reservation);
+        } else {
+          console.log(response.status);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
+
+    fetchData(); // Call the async function here
+  }, []);
 
   return (
     <div className="reservation-card">
