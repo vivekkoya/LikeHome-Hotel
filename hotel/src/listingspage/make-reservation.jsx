@@ -104,8 +104,12 @@ const MakeReservation = () => {
     });
     if (res.status === 201) {
       window.location.href = "/viewreservations";
+    } else if (res.status === 401) {
+      alert(
+        "You Already Have a Reservation for a portion of this stay. Please edit / remove that booking before making new reservation"
+      );
     } else {
-      alert("Error");
+      alert("API error");
     }
   };
 

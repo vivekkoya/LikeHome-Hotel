@@ -3,19 +3,40 @@ import Booking from '../models/Bookings.js';
 
 const router = express.Router();
 
-// Create a new booking
-router.post('/', async(req, res) => {
-  console.log(req)
+router.post('/', async (req, res) => {
   try {
     const booking = req.body.booking;
 
-    const newBooking = new Booking(booking)
+    const exists = await Booking.findOne({
+      user: booking.user,
+      $or: [
+        {
+          $and: [
+            { checkInDate: { $lte: booking.checkOutDate } },
+            { checkOutDate: { $gt: booking.checkInDate } }
+          ]
+        },
+        {
+          $and: [
+            { checkInDate: { $lt: booking.checkOutDate } },
+            { checkOutDate: { $gte: booking.checkInDate } }
+          ]
+        }
+      ]
+    });
 
-    const saveBooking = await newBooking.save();
-    res.status(201).json(saveBooking);
+    if (exists) {
+      const objectJson = exists.toObject(); // Convert to a JSON-serializable object
+      return res.status(401).json(objectJson);
+    } else {
+      const newBooking = new Booking(booking)
+
+      const saveBooking = await newBooking.save();
+      return res.status(201).json({message: 'success'});
+    }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({message: 'Booking fialed'});
+    console.error('Error:', error);
+    return res.status(500).json('Internal server error'); // Status code 500 for internal server error
   }
 });
 
