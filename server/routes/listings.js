@@ -23,8 +23,7 @@ router.get('/createListing', async (req, res) => {
 
         res.status(201).json(newLisitng)
     } catch (error) {
-        console.error(error);
-        res.status(500).json({message: 'Failed to cancel booking'});
+        res.status(404).json({messages: error.message })
     }
 })
 
