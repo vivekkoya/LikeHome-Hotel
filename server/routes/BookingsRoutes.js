@@ -35,8 +35,8 @@ router.post('/', async (req, res) => {
       return res.status(201).json({message: 'success'});
     }
   } catch (error) {
-    console.error('Error:', error);
-    return res.status(500).json('Internal server error'); // Status code 500 for internal server error
+      console.error('Error:', error);
+      return res.status(500).json('Internal server error'); // Status code 500 for internal server error
   }
 });
 
@@ -88,8 +88,8 @@ router.delete('/:id', async(req, res) => {
 
     res.status(204).end();
   } catch (error) {
-    console.error(error);
-    res.status(500).json({message: 'Failed to cancel booking'});
+      console.error(error);
+      res.status(500).json({message: 'Failed to cancel booking'});
   }
 });
 
