@@ -46,6 +46,20 @@ const ReservationPage = () => {
   // };
   const [reservations, setReservations] = useState([]);
 
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const openModal = () => {
+    setDeleteModal(true);
+  };
+
+  const closeModal = () => {
+    setDeleteModal(false);
+  };
+
+  const deleteReservation = () => {
+    closeModal();
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       console.log("start fetch");

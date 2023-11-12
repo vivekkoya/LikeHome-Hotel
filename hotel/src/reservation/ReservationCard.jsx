@@ -2,9 +2,36 @@ import React, { useState, useEffect } from "react";
 import "./card.css";
 import LogoList from "./LogoList";
 import { FaBed, FaToilet, FaUser } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Select from "react-dropdown-select";
+
+const DeleteModal = ({ showModal, closeModal, proceedAction }) => {
+  if (!showModal) {
+    return null;
+  }
+
+  return (
+    <div className={`modal ${showModal ? "show" : ""}`}>
+      <div className="modal-content">
+        <h2>Confirmation</h2>
+        <p>Are you sure you want to delete this reservation?</p>
+        <div className="button-row">
+          <button className="res-btn" onClick={closeModal}>
+            Cancel
+          </button>
+          <button className="res-btn" onClick={proceedAction}>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ReservationCard = (Props) => {
   const booking = Props.reservation;
+  console.log(Props.reservation);
   const [reservation, setReservation] = useState({
     hotel_name: "Hotel Name",
     price: 100,
@@ -25,7 +52,12 @@ const ReservationCard = (Props) => {
       bathrooms: 1,
     },
     num_people: 4,
+    original_price: 200,
+    daily_price: 200,
   });
+
+  const [start_date, setStart] = useState(null);
+  const [end_date, setEnd] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +73,10 @@ const ReservationCard = (Props) => {
           const data = await response.json();
           console.log(data[0]);
           console.log(data[0].imgurl);
+          const start = new Date(booking.checkInDate);
+          const end = new Date(booking.checkOutDate);
+          setStart(start);
+          setEnd(end);
           await setReservation({
             hotel_name: data[0].hotel_name,
             price: data[0].price,
@@ -48,12 +84,14 @@ const ReservationCard = (Props) => {
             check_in: data[0].check_in,
             check_out: data[0].check_out,
             imgurl: data[0].imgurl,
-            start_date: new Date(booking.checkInDate),
-            end_date: new Date(booking.checkOutDate),
+            start_date: start,
+            end_date: end,
             room_details: data[0].room_details,
             num_people: data[0].num_people,
             amenities: data[0].amenities,
             accessibility: data[0].accessability,
+            price: data[0].price,
+            original_price: ((end - start) / 864000000) * data[0].price,
           });
           console.log(reservation);
         } else {
@@ -66,6 +104,52 @@ const ReservationCard = (Props) => {
 
     fetchData(); // Call the async function here
   }, []);
+
+  const [editModal, setEditModal] = useState(false);
+
+  const openEdit = () => {
+    setEditModal(true);
+  };
+
+  const closeEdit = () => {
+    setEditModal(false);
+  };
+
+  const editReservation = () => {
+    closeEdit();
+  };
+
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const openDelete = () => {
+    setDeleteModal(true);
+  };
+
+  const closeDelete = () => {
+    setDeleteModal(false);
+  };
+
+  const deleteReservation = async () => {
+    console.log(booking.listing);
+    const deleteUrl = `http://localhost:5001/booking/${Props.reservation._id}`;
+    fetch(deleteUrl, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Booking Deleted, Refresh page to update");
+        } else {
+          alert(response.message);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    closeDelete();
+  };
 
   return (
     <div className="reservation-card">
@@ -123,8 +207,77 @@ const ReservationCard = (Props) => {
           </div>
         </div>
         <div className="button-row">
-          <button className="res-btn">Cancel</button>
-          <button className="res-btn">Edit</button>
+          <button className="res-btn" onClick={openDelete}>
+            Cancel
+          </button>
+          <button className="res-btn" onClick={openEdit}>
+            Edit
+          </button>
+        </div>
+        <DeleteModal
+          showModal={deleteModal}
+          closeModal={closeDelete}
+          proceedAction={deleteReservation}
+        />
+        <div className={`modal ${editModal ? "show" : ""}`}>
+          <h1> Edit Reservation</h1>
+          <div className="modal-content">
+            <div className="selector-row">
+              <div className="form-item">
+                <h3>Check-in</h3>
+                <DatePicker
+                  selected={start_date}
+                  onChange={(date) => setStart(date)}
+                  className="date-picker"
+                />
+              </div>
+              <div className="form-item">
+                <h3>Check-out</h3>
+                <DatePicker
+                  selected={end_date}
+                  onChange={(date) => setEnd(date)}
+                  className="date-picker"
+                />
+              </div>
+            </div>
+            <div className="adjustment">
+              <h2>
+                {" "}
+                Price Ajustment{" "}
+                {((end_date -
+                  start_date -
+                  (reservation.end_date - reservation.start_date)) /
+                  86400000) *
+                  reservation.price <
+                0
+                  ? "-"
+                  : "+"}
+                ${" "}
+                {Math.abs(
+                  Math.trunc(
+                    ((end_date -
+                      start_date -
+                      (reservation.end_date - reservation.start_date)) /
+                      86400000) *
+                      reservation.price
+                  )
+                )}
+              </h2>
+              <p>
+                {" "}
+                *the price ajustment will be applied to the credit card used to
+                reserve the booking
+              </p>
+            </div>
+            <div className="button-row">
+              <button className="res-btn" onClick={closeEdit}>
+                Undo
+              </button>
+              <button className="res-btn" onClick={editReservation}>
+                Finish
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

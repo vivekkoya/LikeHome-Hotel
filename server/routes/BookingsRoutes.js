@@ -48,7 +48,7 @@ router.get('/:id', async(req, res) => {
     res.status(200).json(bookings);
   } catch (error) {
     console.error(error);
-    res.status(500).json({message: 'Failed to get bookings'});
+    res.status(500).json({message: 'failed to get booking'});
   }
 });
 
@@ -79,6 +79,7 @@ router.put('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
   try {
     const {id} = req.params;
+    console.log(id)
 
     const deleteBooking = await Booking.findByIdAndDelete(id);
 
@@ -89,7 +90,7 @@ router.delete('/:id', async(req, res) => {
     res.status(204).end();
   } catch (error) {
       console.error(error);
-      res.status(500).json({message: 'Failed to cancel booking'});
+      res.status(500).json({message: error});
   }
 });
 

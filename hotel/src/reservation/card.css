@@ -88,7 +88,7 @@ body p {
     border: 3px solid #14213d;
     background: transparent;
     box-shadow: 0px 0px 4px #777;
-    padding: 4px 0px;
+    padding: 4px 0px 4px 0px !important;
 }
 
 .res-btn:hover{
@@ -121,4 +121,49 @@ body p {
 }
 
 
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 8px; /* Round the edges */
+    box-shadow: 0 0 10px rgba(4, 4, 4, 3); /* Adding box shadow */
+    padding: 20px;
+    z-index: 9999;
+    /* Add more styles according to your design */
+  }
+  
+  .modal.show {
+    display: block;
+  }
 
+  .selector-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly
+  }
+  
+  .form-item {
+    padding: 0px 12px;
+  }
+
+  .form-item h3 {
+    margin: 0px 6px;
+  }
+
+  .modal h1 {
+    margin: 4px 0px 18px 0px;
+  }
+
+  .adjustment h2 {
+    margin: 18px 0px 0px 0px
+  }
+
+  .adjustment {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline
+  }
