@@ -7,58 +7,10 @@ import { useCookies } from "react-cookie";
 
 const ReservationPage = () => {
   const [cookies, setCookies] = useCookies(["users"]);
-  const [loading, setLoading] = useState(true);
-  // const res = {
-  //   hotel_name: "Hotel Name",
-  //   price: 100,
-  //   location: {
-  //     state: "California",
-  //     city: "San Jose",
-  //     address: "123 Main Street",
-  //   },
-  //   check_in: "3:00pm",
-  //   check_out: "10:00am",
-  //   imgurl: [
-  //     "https://hotelandra.com/wp-content/uploads/2022/01/Andra2483-Andra-Queen-Queen.jpg",
-  //   ],
-  //   start_date: new Date("12/13/2023"),
-  //   end_date: new Date("12/14/2023"),
-  //   amenities: [
-  //     "Pool",
-  //     "Free Wifi",
-  //     "Air Conditioning",
-  //     "Bar",
-  //     "Laundry Facilities",
-  //     "Breakfast",
-  //     "Gym",
-  //   ],
-  //   accessibility: [
-  //     "WheelChair Accessible",
-  //     "Staff Asl Trained",
-  //     "Non-smoking",
-  //     "Mulitlingual Staff",
-  //   ],
-  //   room_details: {
-  //     beds: 2,
-  //     bathrooms: 1,
-  //   },
-  //   num_people: 4,
-  // };
-  const [reservations, setReservations] = useState([]);
-
-  const [deleteModal, setDeleteModal] = useState(false);
-
-  const openModal = () => {
-    setDeleteModal(true);
-  };
-
-  const closeModal = () => {
-    setDeleteModal(false);
-  };
-
-  const deleteReservation = () => {
-    closeModal();
-  };
+  const [reservations, setReservations] = useState({
+    presentBookings: [],
+    pastBookings: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,8 +30,6 @@ const ReservationPage = () => {
         }
       } catch (error) {
         console.error("Fetch error:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -88,13 +38,28 @@ const ReservationPage = () => {
 
   return (
     <div className="upcoming-reservation">
-      {loading ? (
-        <p>Loading reservations...</p>
-      ) : reservations.length === 0 ? ( // Check if reservations array is empty
-        <p>No reservations found.</p>
+      <h2> Upcoming Reservations </h2>
+      {reservations.presentBookings.length === 0 ? (
+        <p> No upcoming Bookings</p>
       ) : (
-        reservations.map((reservation) => (
-          <ReservationCard key={reservation.id} reservation={reservation} />
+        reservations.presentBookings.map((reservation) => (
+          <ReservationCard
+            key={reservation.id}
+            reservation={reservation}
+            upcoming={true}
+          />
+        ))
+      )}
+      <h2> Past Reservations </h2>
+      {reservations.pastBookings.length === 0 ? (
+        <p> No Past Bookings</p>
+      ) : (
+        reservations.pastBookings.map((reservation) => (
+          <ReservationCard
+            key={reservation._id}
+            reservation={reservation}
+            upcoming={false}
+          />
         ))
       )}
     </div>

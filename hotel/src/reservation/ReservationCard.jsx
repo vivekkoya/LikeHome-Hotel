@@ -206,14 +206,18 @@ const ReservationCard = (Props) => {
             </h2>
           </div>
         </div>
-        <div className="button-row">
-          <button className="res-btn" onClick={openDelete}>
-            Cancel
-          </button>
-          <button className="res-btn" onClick={openEdit}>
-            Edit
-          </button>
-        </div>
+        {Props.upcoming ? (
+          <div className="button-row">
+            <button className="res-btn" onClick={openDelete}>
+              Cancel
+            </button>
+            <button className="res-btn" onClick={openEdit}>
+              Edit
+            </button>
+          </div>
+        ) : (
+          <p></p>
+        )}
         <DeleteModal
           showModal={deleteModal}
           closeModal={closeDelete}
