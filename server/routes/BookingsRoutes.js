@@ -40,12 +40,26 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get a list of all bookings
+// Get a list of past and present bookings
 router.get('/:id', async(req, res) => {
   try {
     const {id} = req.params
-    const bookings = await Booking.find({'user': id});
-    res.status(200).json(bookings);
+    const currentDate = new Date();
+
+    const presentBookings = await Booking.find({
+      user: id,
+      checkOutDate: {$gte: currentDate},
+    });
+
+    const pastBookings = await Booking.find({
+      user: id,
+      checkOutDate: {$lt: currentDate},
+    });
+
+    res.status(200).json({
+      presentBookings,
+      pastBookings,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({message: 'failed to get booking'});
@@ -71,7 +85,7 @@ router.put('/:id', async(req, res) => {
     res.status(200).json(savedBooking);
   } catch (error) {
       console.error(error)
-      res.status(500).json({mmessage: 'Failed to edit booking'});
+      res.status(500).json({message: 'Failed to edit booking'});
   }
 });
 
