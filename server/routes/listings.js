@@ -57,13 +57,13 @@ router.delete('/deleteListing/:listingId', async (req ,res) => {
     }
 })
 
-//Note for multiword cities like san jose use %20 instead of space 
+// Note for multiword cities like san jose use %20 instead of space 
 // ex localhost:5001/listings/ListingInCity/San%20Jose
 // Incorporated filtering hotels
 router.get('/ListingInCity/:city', async (req, res) => {
-    //console.log(req.params.city);
+    console.log(req.params.city);
     const city = req.params.city
-    const {priceMin, priceMax, beds, people, amenities, accessability} = req.query;
+    const {priceMin, priceMax, beds, people, amenities, accessability, sortBy} = req.query;
     const query = {'location.city': city};
     
     if (priceMin !== "" && !isNaN(priceMin)) {
@@ -94,11 +94,24 @@ router.get('/ListingInCity/:city', async (req, res) => {
     }
 
     try {
-        // const listing = await Listing.find({ 'location.city': city }).lean();
-        // res.status(200).json(listing)
-        //console.log(query);
-        const filteredListings = await Listing.find(query).lean();
-        //console.log("Filtered Listing:", filteredListings);
+        let sortedListings = Listing.find(query).lean();
+
+        // Sort by price per person or by price alone
+        if (sortBy === "priceAsc") {
+            sortedListings = sortedListings.sort({price: 1});
+        }
+        else if (sortBy === "priceDesc") {
+            sortedListings = sortedListings.sort({price: -1});
+        }
+        else if (sortBy === "peopleAsc") {
+            sortedListings = sortedListings.sort({'room_details.max_people': 1});
+        }
+        else if (sortBy === "peopleDesc") {
+            sortedListings = sortedListings.sort({'room_details.max_people': -1});
+        }
+
+        const filteredListings = await sortedListings.exec();
+
         res.status(200).json(filteredListings);
     } catch (error) {
         res.status(404).json({message: error.message});
