@@ -78,7 +78,8 @@ h2 {
 .filterbox {
     background-color: grey;
     width: 300px;
-    margin-top: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
 }
 
 .find-body {
@@ -123,7 +124,7 @@ label {
 }
 
 input[type="checkbox"] {
-    margin-right: 15px;
+    margin-right: 10px;
   }
 
 input[type="range"] {
@@ -141,4 +142,14 @@ button {
     font-size: 1rem;
     margin: 0 auto;
     display: block;
+    font-size: 20px;
+    border-radius: 5px;
+}
+label {
+    color: black
+}
+
+h3{
+    color: black;
+    text-align: center;
 }

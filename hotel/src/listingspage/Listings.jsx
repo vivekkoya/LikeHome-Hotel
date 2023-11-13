@@ -59,33 +59,39 @@ const Listings = () => {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
 
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-  const [inputValues, setInputValues] = useState({ beds: '', people: '' });
-  const [sliderValues, setSliderValues] = useState({ slider1: 0 });
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [selectedAccessibility, setSelectedAccessibility] = useState([]);
+  const [sliderValues, setSliderValues] = useState({ price: 750, beds: 2, people: 2 });
 
-    if (checked) {
-      setSelectedCheckboxes([...selectedCheckboxes, value]);
-    } else {
-      setSelectedCheckboxes(selectedCheckboxes.filter(option => option !== value));
+  const handleCheckboxChange = (category, value) => {
+    if (category === 'amenities') {
+      setSelectedAmenities((prev) => {
+        if (prev.includes(value)) {
+          return prev.filter((item) => item !== value);
+        } else {
+          return [...prev, value];
+        }
+      });
+    } else if (category === 'accessibility') {
+      setSelectedAccessibility((prev) => {
+        if (prev.includes(value)) {
+          return prev.filter((item) => item !== value);
+        } else {
+          return [...prev, value];
+        }
+      });
     }
   };
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setInputValues({ ...inputValues, [name]: value });
-  };
-  const handleSliderChange = (event) => {
-    const { name, value } = event.target;
-    setSliderValues({
-      ...sliderValues,
-      [name]: parseInt(value, 10),
-    });
+  const handleSliderChange = (name, value) => {
+    setSliderValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
   const applyChanges = () => {
-    console.log('Selected checkboxes:', selectedCheckboxes);
-    console.log('Slider values:', sliderValues);
-    console.log('Input values:', inputValues);
+    console.log('Selected Amenities:', selectedAmenities);
+    console.log('Selected Accessibility:', selectedAccessibility);
+    console.log('Slider Values:', sliderValues);
   };
 
   //used to inbed icon in the datepicker
@@ -136,63 +142,84 @@ const Listings = () => {
       <div className="find-body">
         <div className="filterbox">
           <h2>Filter Options</h2>
-          <label>
-            Price
-            <input
-              type="range"
-              name="slider1"
-              min="100"
-              max="1000"
-              value={sliderValues.slider1}
-              onChange={handleSliderChange}
-            />
-            <div>Value: {sliderValues.slider1}</div>
-          </label>
-          <label>
-            Beds:
-            <input
-              type="text"
-              name="beds"
-              value={inputValues.beds}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            People:
-            <input
-              type="text"
-              name="people"
-              value={inputValues.people}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Pool"
-              checked={selectedCheckboxes.includes('Pool')}
-              onChange={handleCheckboxChange}
-            />
-            Pool
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Gym"
-              checked={selectedCheckboxes.includes('Gym')}
-              onChange={handleCheckboxChange}
-            />
-            Gym
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              value="Wheelchair Accessible"
-              checked={selectedCheckboxes.includes('Wheelchair Accessible')}
-              onChange={handleCheckboxChange}
-            />
-            Wheelchair Accessible
-          </label>
+          <div>
+            <label>
+              Price:
+              <input
+                type="range"
+                min="100"
+                max="1000"
+                step="1"
+                value={sliderValues.price}
+                onChange={(e) => handleSliderChange('price', parseInt(e.target.value))}
+              />
+              {sliderValues.price}
+            </label>
+          </div>
+
+          <div>
+            <label>
+              Beds:
+              <input
+                type="range"
+                min="1"
+                max="5"
+                step="1"
+                value={sliderValues.beds}
+                onChange={(e) => handleSliderChange('beds', parseInt(e.target.value))}
+              />
+              {sliderValues.beds}
+            </label>
+          </div>
+
+          <div>
+            <label>
+              People:
+              <input
+                type="range"
+                min="1"
+                max="10"
+                step="1"
+                value={sliderValues.people}
+                onChange={(e) => handleSliderChange('people', parseInt(e.target.value))}
+              />
+              {sliderValues.people}
+            </label>
+          </div>
+          <hr />
+          <h3>Amenities</h3>
+          <div>
+            {['Pool', 'Free Wifi', 'Air Conditioning', 'Bar', 'Laundry Facilities', 'Breakfast', 'Gym'].map((amenity) => (
+              <label key={amenity}>
+                <input
+                  type="checkbox"
+                  value={amenity}
+                  checked={selectedAmenities.includes(amenity)}
+                  onChange={() => handleCheckboxChange('amenities', amenity)}
+                />
+                {amenity}
+              </label>
+            ))}
+          </div>
+
+          <hr />
+
+          <h3>Accessibility</h3>
+          <div>
+            {['WheelChair Accessible', 'Staff Asl Trained', 'Non-smoking', 'Mulitlingual Staff'].map((accessibility) => (
+              <label key={accessibility}>
+                <input
+                  type="checkbox"
+                  value={accessibility}
+                  checked={selectedAccessibility.includes(accessibility)}
+                  onChange={() => handleCheckboxChange('accessibility', accessibility)}
+                />
+                {accessibility}
+              </label>
+            ))}
+          </div>
+
+          <hr />
           <button onClick={applyChanges}>Apply Changes</button>
         </div>        <div className="listing-cards">
           {listings.map((listing) => (
