@@ -103,12 +103,6 @@ router.get('/ListingInCity/:city', async (req, res) => {
         else if (sortBy === "priceDesc") {
             sortedListings = sortedListings.sort({price: -1});
         }
-        else if (sortBy === "peopleAsc") {
-            sortedListings = sortedListings.sort({'room_details.max_people': 1});
-        }
-        else if (sortBy === "peopleDesc") {
-            sortedListings = sortedListings.sort({'room_details.max_people': -1});
-        }
 
         const filteredListings = await sortedListings.exec();
 
