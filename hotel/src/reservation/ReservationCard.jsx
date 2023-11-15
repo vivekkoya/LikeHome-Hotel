@@ -116,6 +116,28 @@ const ReservationCard = (Props) => {
   };
 
   const editReservation = () => {
+    const updateUrl = `http://localhost:5001/booking/${booking._id}`;
+    const editBookings = {
+      checkInDate: start_date,
+      checkOutDate: end_date,
+      guests: booking.guests,
+      listing: booking.listing,
+      user: booking.user,
+      _id: booking._id,
+      _v: booking._v,
+    };
+    fetch(updateUrl, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        alert("Bookings Updated, Refresh page to update");
+      } else {
+        alert(response.message);
+      }
+    });
     closeEdit();
   };
 
@@ -131,23 +153,19 @@ const ReservationCard = (Props) => {
 
   const deleteReservation = async () => {
     console.log(booking.listing);
-    const deleteUrl = `http://localhost:5001/booking/${Props.reservation._id}`;
+    const deleteUrl = `http://localhost:5001/booking/${booking}._id}`;
     fetch(deleteUrl, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
       },
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Booking Deleted, Refresh page to update");
-        } else {
-          alert(response.message);
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    }).then((response) => {
+      if (response.ok) {
+        alert("Booking Deleted, Refresh page to update");
+      } else {
+        alert(response.message);
+      }
+    });
     closeDelete();
   };
 

@@ -60,10 +60,11 @@ router.delete('/deleteListing/:listingId', async (req ,res) => {
 // Note for multiword cities like san jose use %20 instead of space 
 // ex localhost:5001/listings/ListingInCity/San%20Jose
 // Incorporated filtering hotels
-router.get('/ListingInCity/:city', async (req, res) => {
+router.post('/ListingInCity/:city', async (req, res) => {
+    console.log(req.body)
     console.log(req.params.city);
     const city = req.params.city
-    const {priceMin, priceMax, beds, people, amenities, accessability, sortBy} = req.query;
+    const {priceMin, priceMax, beds, people, amenities, accessability, sortBy} = req.body;
     const query = {'location.city': city};
     
     if (priceMin !== "" && !isNaN(priceMin)) {
@@ -85,12 +86,12 @@ router.get('/ListingInCity/:city', async (req, res) => {
         query['room_details.max_people'] = parseInt(people);
     }
 
-    if (amenities) {
-        query['amenities'] = {$all: amenities.split(',').map(amenity => amenity.trim())};
+    if (amenities && amenities.length > 0) {
+        query['amenities'] = {$in: amenities};
     }
 
-    if (accessability) {
-        query['accessability'] = {$all: accessability.split(',')};
+    if (accessability && accessability.length > 0) {
+        query['accessability'] = {$in: accessability};
     }
 
     try {

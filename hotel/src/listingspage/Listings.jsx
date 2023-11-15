@@ -40,10 +40,13 @@ const Listings = () => {
     const search = searchQuery.replace(" ", "%20");
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`
+        `http://localhost:5001/listings/ListingInCity/${search}`,
+        {
+          method: "POST",
+        }
       );
       if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
+        alert(`HTTP error! Status: ${res.message}`);
       }
       const data = await res.json();
       setListings(data);
@@ -61,10 +64,14 @@ const Listings = () => {
 
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [selectedAccessibility, setSelectedAccessibility] = useState([]);
-  const [sliderValues, setSliderValues] = useState({ price: 750, beds: 2, people: 2 });
+  const [sliderValues, setSliderValues] = useState({
+    price: 750,
+    beds: 2,
+    people: 2,
+  });
 
   const handleCheckboxChange = (category, value) => {
-    if (category === 'amenities') {
+    if (category === "amenities") {
       setSelectedAmenities((prev) => {
         if (prev.includes(value)) {
           return prev.filter((item) => item !== value);
@@ -72,7 +79,7 @@ const Listings = () => {
           return [...prev, value];
         }
       });
-    } else if (category === 'accessibility') {
+    } else if (category === "accessibility") {
       setSelectedAccessibility((prev) => {
         if (prev.includes(value)) {
           return prev.filter((item) => item !== value);
@@ -88,10 +95,42 @@ const Listings = () => {
       [name]: value,
     }));
   };
-  const applyChanges = () => {
-    console.log('Selected Amenities:', selectedAmenities);
-    console.log('Selected Accessibility:', selectedAccessibility);
-    console.log('Slider Values:', sliderValues);
+  const applyChanges = async () => {
+    console.log("Selected Amenities:", selectedAmenities);
+    console.log("Selected Accessibility:", selectedAccessibility);
+    console.log("Slider Values:", sliderValues);
+
+    const search = searchQuery.replace(" ", "%20");
+    const requestBody = {
+      priceMin: 0,
+      priceMax: sliderValues.price,
+      beds: sliderValues.beds,
+      people: sliderValues.people,
+      amenities: selectedAmenities,
+      accessibility: selectedAccessibility,
+    };
+
+    try {
+      const res = await fetch(
+        `http://localhost:5001/listings/ListingInCity/${search}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setListings(data);
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
   };
 
   //used to inbed icon in the datepicker
@@ -144,14 +183,16 @@ const Listings = () => {
           <h2>Filter Options</h2>
           <div>
             <label>
-              Price:
+              Max Price:
               <input
                 type="range"
                 min="100"
-                max="1000"
+                max="1500"
                 step="1"
                 value={sliderValues.price}
-                onChange={(e) => handleSliderChange('price', parseInt(e.target.value))}
+                onChange={(e) =>
+                  handleSliderChange("price", parseInt(e.target.value))
+                }
               />
               {sliderValues.price}
             </label>
@@ -163,10 +204,12 @@ const Listings = () => {
               <input
                 type="range"
                 min="1"
-                max="5"
+                max="8"
                 step="1"
                 value={sliderValues.beds}
-                onChange={(e) => handleSliderChange('beds', parseInt(e.target.value))}
+                onChange={(e) =>
+                  handleSliderChange("beds", parseInt(e.target.value))
+                }
               />
               {sliderValues.beds}
             </label>
@@ -181,47 +224,60 @@ const Listings = () => {
                 max="10"
                 step="1"
                 value={sliderValues.people}
-                onChange={(e) => handleSliderChange('people', parseInt(e.target.value))}
+                onChange={(e) =>
+                  handleSliderChange("people", parseInt(e.target.value))
+                }
               />
               {sliderValues.people}
             </label>
           </div>
-          <hr />
-          <h3>Amenities</h3>
+          <h2>Amenities</h2>
           <div>
-            {['Pool', 'Free Wifi', 'Air Conditioning', 'Bar', 'Laundry Facilities', 'Breakfast', 'Gym'].map((amenity) => (
+            {[
+              "Pool",
+              "Free Wifi",
+              "Air Conditioning",
+              "Bar",
+              "Laundry Facilities",
+              "Breakfast",
+              "Gym",
+            ].map((amenity) => (
               <label key={amenity}>
                 <input
                   type="checkbox"
                   value={amenity}
                   checked={selectedAmenities.includes(amenity)}
-                  onChange={() => handleCheckboxChange('amenities', amenity)}
+                  onChange={() => handleCheckboxChange("amenities", amenity)}
                 />
                 {amenity}
               </label>
             ))}
           </div>
 
-          <hr />
-
-          <h3>Accessibility</h3>
+          <h2>Accessibility</h2>
           <div>
-            {['WheelChair Accessible', 'Staff Asl Trained', 'Non-smoking', 'Mulitlingual Staff'].map((accessibility) => (
+            {[
+              "WheelChair Accessible",
+              "Staff Asl Trained",
+              "Non-smoking",
+              "Mulitlingual Staff",
+            ].map((accessibility) => (
               <label key={accessibility}>
                 <input
                   type="checkbox"
                   value={accessibility}
                   checked={selectedAccessibility.includes(accessibility)}
-                  onChange={() => handleCheckboxChange('accessibility', accessibility)}
+                  onChange={() =>
+                    handleCheckboxChange("accessibility", accessibility)
+                  }
                 />
                 {accessibility}
               </label>
             ))}
           </div>
-
-          <hr />
           <button onClick={applyChanges}>Apply Changes</button>
-        </div>        <div className="listing-cards">
+        </div>{" "}
+        <div className="listing-cards">
           {listings.map((listing) => (
             <ListingCard listing={listing} start={start} end={end} />
           ))}
