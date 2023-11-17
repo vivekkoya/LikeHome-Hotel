@@ -58,53 +58,52 @@ const ReservationCard = (Props) => {
 
   const [start_date, setStart] = useState(reservation.start_date);
   const [end_date, setEnd] = useState(reservation.end_date);
-  const [reload, setReload] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      console.log(
+        `http://localhost:5001/listing/getListings/${booking.listing}`
+      );
+      const response = await fetch(
+        `http://localhost:5001/listings/getListings/${booking.listing}`
+      );
+      if (response.status === 200) {
+        console.log("response 200");
+        const data = await response.json();
+
+        console.log(data.imgurl);
+        const start = new Date(booking.checkInDate);
+        const end = new Date(booking.checkOutDate);
+        await setReservation({
+          hotel_name: data.hotel_name,
+          price: data.price,
+          location: data.location,
+          check_in: data.check_in,
+          check_out: data.check_out,
+          imgurl: data.imgurl,
+          start_date: start,
+          end_date: end,
+          room_details: data.room_details,
+          num_people: data.num_people,
+          amenities: data.amenities,
+          accessibility: data.accessability,
+          price: data.price,
+          original_price: ((end - start) / 864000000) * data.price,
+        });
+        setStart(start);
+        setEnd(end);
+        console.log(reservation);
+      } else {
+        console.log(response.status);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log(
-          `http://localhost:5001/listing/getListings/${booking.listing}`
-        );
-        const response = await fetch(
-          `http://localhost:5001/listings/getListings/${booking.listing}`
-        );
-        if (response.status === 200) {
-          console.log("response 200");
-          const data = await response.json();
-
-          console.log(data.imgurl);
-          const start = new Date(booking.checkInDate);
-          const end = new Date(booking.checkOutDate);
-          await setReservation({
-            hotel_name: data.hotel_name,
-            price: data.price,
-            location: data.location,
-            check_in: data.check_in,
-            check_out: data.check_out,
-            imgurl: data.imgurl,
-            start_date: start,
-            end_date: end,
-            room_details: data.room_details,
-            num_people: data.num_people,
-            amenities: data.amenities,
-            accessibility: data.accessability,
-            price: data.price,
-            original_price: ((end - start) / 864000000) * data.price,
-          });
-          setStart(start);
-          setEnd(end);
-          console.log(reservation);
-        } else {
-          console.log(response.status);
-        }
-      } catch (error) {
-        console.error("Fetch error:", error);
-      }
-    };
-
     fetchData(); // Call the async function here
-  }, [reload]);
+  }, []);
 
   const [adjustment, setAdjustment] = useState(0);
   useEffect(() => {
@@ -133,7 +132,7 @@ const ReservationCard = (Props) => {
     setEditModal(false);
   };
 
-  const editReservation = () => {
+  const editReservation = async () => {
     const updateUrl = `http://localhost:5001/booking/${booking._id}`;
     const editBookings = {
       checkInDate: start_date,
@@ -144,20 +143,19 @@ const ReservationCard = (Props) => {
       _id: booking._id,
       _v: booking._v,
     };
-    fetch(updateUrl, {
+    const response = await fetch(updateUrl, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(editBookings),
-    }).then((response) => {
-      if (response.ok) {
-        alert("Bookings Updated, Refresh page to update");
-      } else {
-        alert(response.message);
-      }
     });
-    setReload(reload + 1);
+    if (response.ok) {
+      console.log("set reload triggered");
+      window.location.href = "/viewreservations";
+    } else {
+      alert(response.message);
+    }
     closeEdit();
   };
 
@@ -186,8 +184,8 @@ const ReservationCard = (Props) => {
         alert(response.message);
       }
     });
-    setReload(reload + 1);
     closeDelete();
+    window.location.href = "/viewreservations";
   };
 
   return (
