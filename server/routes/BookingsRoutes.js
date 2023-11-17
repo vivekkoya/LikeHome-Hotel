@@ -67,27 +67,34 @@ router.get('/:id', async(req, res) => {
 });
 
 // Edit a booking
-router.put('/:id', async(req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const updateBooking = req.body;
+    console.log(updateBooking)
+
+    // Validate updateBooking here if needed
 
     const existingBooking = await Booking.findById(id);
+    console.log(existingBooking)
 
-    if (!existingBooking) {
-      return res.status(404).json({message: 'Booking not found'});
-    }
+     if (!existingBooking) {
+       return res.status(404).json({ message: 'Booking not found' });
+     }
 
-    Object.assign(existingBooking, updateBooking);
+     // Update existingBooking properties
+     Object.assign(existingBooking, updateBooking);
 
-    const savedBooking = await existingBooking.save();
+     // Save the updated booking
+     const savedBooking = await existingBooking.save();
 
-    res.status(200).json(savedBooking);
+     res.status(200).json(savedBooking);
   } catch (error) {
-      console.error(error)
-      res.status(500).json({message: 'Failed to edit booking'});
+     console.error(error);
+     res.status(500).json({ message: 'Failed to edit booking', error: error.message });
   }
 });
+
 
 // Cancel a booking
 router.delete('/:id', async(req, res) => {

@@ -56,8 +56,9 @@ const ReservationCard = (Props) => {
     daily_price: 200,
   });
 
-  const [start_date, setStart] = useState(null);
-  const [end_date, setEnd] = useState(null);
+  const [start_date, setStart] = useState(reservation.start_date);
+  const [end_date, setEnd] = useState(reservation.end_date);
+  const [reload, setReload] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,28 +72,28 @@ const ReservationCard = (Props) => {
         if (response.status === 200) {
           console.log("response 200");
           const data = await response.json();
-          console.log(data[0]);
-          console.log(data[0].imgurl);
+
+          console.log(data.imgurl);
           const start = new Date(booking.checkInDate);
           const end = new Date(booking.checkOutDate);
-          setStart(start);
-          setEnd(end);
           await setReservation({
-            hotel_name: data[0].hotel_name,
-            price: data[0].price,
-            location: data[0].location,
-            check_in: data[0].check_in,
-            check_out: data[0].check_out,
-            imgurl: data[0].imgurl,
+            hotel_name: data.hotel_name,
+            price: data.price,
+            location: data.location,
+            check_in: data.check_in,
+            check_out: data.check_out,
+            imgurl: data.imgurl,
             start_date: start,
             end_date: end,
-            room_details: data[0].room_details,
-            num_people: data[0].num_people,
-            amenities: data[0].amenities,
-            accessibility: data[0].accessability,
-            price: data[0].price,
-            original_price: ((end - start) / 864000000) * data[0].price,
+            room_details: data.room_details,
+            num_people: data.num_people,
+            amenities: data.amenities,
+            accessibility: data.accessability,
+            price: data.price,
+            original_price: ((end - start) / 864000000) * data.price,
           });
+          setStart(start);
+          setEnd(end);
           console.log(reservation);
         } else {
           console.log(response.status);
@@ -103,7 +104,24 @@ const ReservationCard = (Props) => {
     };
 
     fetchData(); // Call the async function here
-  }, []);
+  }, [reload]);
+
+  const [adjustment, setAdjustment] = useState(0);
+  useEffect(() => {
+    const ajust = async () => {
+      const result = Math.trunc(
+        ((end_date -
+          start_date -
+          (reservation.end_date - reservation.start_date)) /
+          86400000) *
+          reservation.price
+      );
+
+      setAdjustment(result < 0 ? result * 0.8 : result);
+    };
+
+    ajust();
+  }, [start_date, end_date]);
 
   const [editModal, setEditModal] = useState(false);
 
@@ -131,6 +149,7 @@ const ReservationCard = (Props) => {
       headers: {
         "Content-type": "application/json",
       },
+      body: JSON.stringify(editBookings),
     }).then((response) => {
       if (response.ok) {
         alert("Bookings Updated, Refresh page to update");
@@ -138,6 +157,7 @@ const ReservationCard = (Props) => {
         alert(response.message);
       }
     });
+    setReload(reload + 1);
     closeEdit();
   };
 
@@ -166,6 +186,7 @@ const ReservationCard = (Props) => {
         alert(response.message);
       }
     });
+    setReload(reload + 1);
     closeDelete();
   };
 
@@ -265,25 +286,8 @@ const ReservationCard = (Props) => {
             <div className="adjustment">
               <h2>
                 {" "}
-                Price Ajustment{" "}
-                {((end_date -
-                  start_date -
-                  (reservation.end_date - reservation.start_date)) /
-                  86400000) *
-                  reservation.price <
-                0
-                  ? "-"
-                  : "+"}
-                ${" "}
-                {Math.abs(
-                  Math.trunc(
-                    ((end_date -
-                      start_date -
-                      (reservation.end_date - reservation.start_date)) /
-                      86400000) *
-                      reservation.price
-                  )
-                )}
+                Price Ajustment {adjustment < 0 ? "-" : "+"}${""}
+                {Math.abs(adjustment)}
               </h2>
               <p>
                 {" "}
