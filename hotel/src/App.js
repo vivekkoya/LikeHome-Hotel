@@ -1,4 +1,5 @@
 import './App.css';
+import Home from './Homepage/home.jsx';
 import styled from "styled-components";
 import NavBar from './components/NavBar';
 import Listings from './listingspage/Listings';
@@ -35,7 +36,7 @@ function App() {
           <Route  path="/viewreservations" element={<ReservationPage></ReservationPage>}/>
           <Route  path="/hotelviewbookings" element={<h1>Hotel Bookings Page</h1>}/>
           <Route  path="/search" element={<Listings/>}/>
-          <Route  path="/" element={<p>home page</p>}/>
+          <Route  path="/" element={<Home/>}/>
           <Route  path="/search/reservation/:id/:StartDate/:EndDate" element={<MakeReservation/>}/>
         </Routes>
       </Router>
