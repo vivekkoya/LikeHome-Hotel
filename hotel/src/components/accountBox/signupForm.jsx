@@ -97,7 +97,7 @@ export function SignupForm(props) {
               type="radio"
               onChange={handleRadioChange}
               value="user"
-              checked={userType == "user"}
+              checked={userType === "user"}
               style={{ display: "none" }}
             />
             Client
@@ -107,7 +107,7 @@ export function SignupForm(props) {
               type="radio"
               onChange={handleRadioChange}
               value="hotel"
-              checked={userType == "hotel"}
+              checked={userType === "hotel"}
               style={{ display: "none" }}
             />
             Owner
