@@ -37,7 +37,8 @@ const MakeReservation = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setDetails(data[0]);
+        await setDetails(data);
+        console.log(data);
         console.log(details);
       } catch (error) {
         console.error("Fetch error:", error);
@@ -170,6 +171,13 @@ const MakeReservation = () => {
           <div className="line-after"></div>
           <div className="price-people">
             <p> {Math.trunc((end - start) / 86400000)} nights</p>
+            <p>
+              {" "}
+              Earn {Math.trunc(
+                details.price * ((end - start) / 86400000) * 12
+              )}{" "}
+              points!
+            </p>
             <p>
               Total: $
               {Math.trunc(details.price * ((end - start) / 86400000) * 1.08)}
