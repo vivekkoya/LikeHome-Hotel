@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "DEBUG=server:debug NODE_ENV=test mocha --require babel-core/register --reporter spec --exit   tests/ --exec babel-node",
     "start": "nodemon index.js"
   },
   "keywords": [],
@@ -15,6 +15,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.12",
+    "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
@@ -26,5 +27,15 @@
     "passport": "^0.6.0",
     "react-router-dom": "^6.16.0",
     "realm-web": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-node8": "^1.2.0",
+    "chai": "^4.3.10",
+    "config": "^3.3.9",
+    "debug": "^4.3.4",
+    "mocha": "^10.2.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^6.3.3"
   }
 }

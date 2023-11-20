@@ -37,3 +37,5 @@ app.get('/', (req, res) => {
 app.get('/hotel', (req, res) => {
     res.send('Hotels Information')
 })
+
+export default app;
