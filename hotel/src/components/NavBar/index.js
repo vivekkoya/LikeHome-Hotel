@@ -53,8 +53,8 @@ const NavBar = () => {
     **/
 
     <header class="header" id="header">
-         <nav class = "nav container ">
-            <div class="nav__logo-img">
+         <nav class = "nav container " >
+            <div>
                <a href="#" class="nav__logo">
                   <img src="assets/img/Suite_Spot_Logo-01.png" alt="explore image" class="logo__perfil" />
                   SuiteSpot
@@ -64,16 +64,13 @@ const NavBar = () => {
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
                   <li class="nav__item">
-                     <a href="#home" class="nav__link">Home</a>
+                     <a href="/" class="nav__link">Home</a>
                   </li>
                   <li class="nav__item">
-                     <a href="#about" class="nav__link">About</a>
+                     <a href="/search" class="nav__link">Search</a>
                   </li>
                   <li class="nav__item">
-                     <a href="#popular" class="nav__link">Popular</a>
-                  </li>
-                  <li class="nav__item">
-                     <a href="#explore" class="nav__link">Testimonials</a>
+                     <a href="/viewreservations" class="nav__link">View Reservations</a>
                   </li>
                   <li>
                 
@@ -89,15 +86,6 @@ const NavBar = () => {
 
                </ul>
 
-              {/*  <!-- Close button--> */}
-               <div class="nav__close" id="nav-close">
-                  <i class="ri-close-line"> </i>
-               </div>
-            </div>
-
-           {/*  <!-- toggle button--> */}
-            <div class="nav__toggle" id="nav-toggle">
-               <i class="ri-menu-fill"></i>
             </div>
          
          </nav>

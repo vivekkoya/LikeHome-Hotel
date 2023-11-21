@@ -38,7 +38,7 @@ const ReservationPage = () => {
 
   return (
     <div className="upcoming-reservation">
-      <h2> Upcoming Reservations </h2>
+      <h2 style={{ color: "white" }}> Upcoming Reservations </h2>
       {reservations.presentBookings.length === 0 ? (
         <p> No upcoming Bookings</p>
       ) : (
@@ -50,7 +50,7 @@ const ReservationPage = () => {
           />
         ))
       )}
-      <h2> Past Reservations </h2>
+      <h2 style={{ color: "white" }}> Past Reservations </h2>
       {reservations.pastBookings.length === 0 ? (
         <p> No Past Bookings</p>
       ) : (

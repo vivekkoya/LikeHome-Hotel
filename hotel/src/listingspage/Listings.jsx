@@ -146,7 +146,7 @@ const Listings = () => {
   );
 
   return (
-    <div className="listings">
+    <div className="listings" style={{ "margin-top": "6rem" }}>
       <div className="header-bar">
         <div className="search-bar">
           <input

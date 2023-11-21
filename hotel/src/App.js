@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { LoginForm } from './components/accountBox/loginForm';
 import {AccountBox} from "./components/accountBox";
 import ReservationPage from './reservation/ReservationPage';
-import MakeReservation from './listingspage/make-reservation';
+import MakeReservation from './ReservationMaker/make-reservation';
 
 
 const AppContainer = styled.div`
