@@ -59,8 +59,11 @@ const Listings = () => {
     setSearchQuery(event.target.value);
   };
 
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const currentDate = new Date();
+  const weekFromToday = new Date();
+  weekFromToday.setDate(currentDate.getDate() + 7);
+  const [start, setStart] = useState(currentDate);
+  const [end, setEnd] = useState(weekFromToday);
 
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [selectedAccessibility, setSelectedAccessibility] = useState([]);

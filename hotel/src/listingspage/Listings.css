@@ -47,13 +47,13 @@ h2 {
 }
 
 .search-icon {
-    margin: 0;
-    top: 50%;
+    margin: 0 !important;
+    top: 50% !important;
     /* Vertically center the icon */
-    left: 10px;
+    left: 10px !important;
     /* Adjust the value to position the icon */
-    transform: translatex(-2875%) translatey(10%);
-    z-index: 10;
+    transform: translatex(-2475%) translatey(10%) !important;
+    z-index: 10 !important;
 }
 
 .search-button {
