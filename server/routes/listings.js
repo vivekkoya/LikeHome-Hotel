@@ -76,19 +76,19 @@ router.post('/ListingInCity/:city', async (req, res) => {
         }
 
         if (beds) {
-            query['room_details.beds'] = parseInt(beds);
+            query['room_details.beds'] = {$gte: parseInt(beds)};
         }
 
         if (people) {
-            query['room_details.max_people'] = parseInt(people);
+            query['room_details.max_people'] = {$gte: parseInt(people)};
         }
 
         if (amenities && amenities.length !== 0) {
-            query['amenities'] = {$in: amenities.split(',')};
+            query['amenities'] = {$in: amenities};
         }
 
         if (accessability && accessability.length !== 0) {
-            query['accessability'] = {$in: accessability.split(',')};
+            query['accessability'] = {$in: accessability};
         }
 
         let sortOptions = {};
@@ -116,9 +116,11 @@ router.post('/ListingInCity/:city', async (req, res) => {
         }
 
         const sortedListings = await Listing.find(query).sort(sortOptions).lean();
+        console.log(sortedListings)
 
         res.status(200).json(sortedListings);
     } catch (error) {
+        console.log(error)
         res.status(404).json({message: error.message});
     }
 })

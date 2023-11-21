@@ -112,7 +112,7 @@ const Listings = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/San%20Jose`,
+        `http://localhost:5001/listings/ListingInCity/${search}`,
         {
           method: "POST",
           headers: {
@@ -121,10 +121,6 @@ const Listings = () => {
           body: JSON.stringify(requestBody),
         }
       );
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
 
       const data = await res.json();
       setListings(data);
