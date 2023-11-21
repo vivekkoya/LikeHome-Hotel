@@ -112,7 +112,7 @@ const Listings = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`,
+        `http://localhost:5001/listings/ListingInCity/San%20Jose`,
         {
           method: "POST",
           headers: {

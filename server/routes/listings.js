@@ -84,7 +84,7 @@ router.post('/ListingInCity/:city', async (req, res) => {
         }
 
         if (amenities && amenities.length !== 0) {
-            query['amenities'] = {$in: amenities.split(',').map(amenity => amenity.trim())};
+            query['amenities'] = {$in: amenities.split(',')};
         }
 
         if (accessability && accessability.length !== 0) {

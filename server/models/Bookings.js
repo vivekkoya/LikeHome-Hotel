@@ -26,11 +26,6 @@ const bookingSchema = new mongoose.Schema({
   guests: {
     type: Number,
     required: true
-  },
-  rewards: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Reward',
-    required: true
   }
 });
 
