@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
 import LogoList from "../reservation/LogoList";
 import { useCookies } from "react-cookie";
+import "./styles.css";
 
 const MakeReservation = () => {
   const [cookies, setStates] = useCookies(["users"]);
@@ -115,7 +116,7 @@ const MakeReservation = () => {
   };
 
   return (
-    <div className="reservation-page">
+    <div className="reservation-page" style={{ "margin-top": "6rem" }}>
       <div className="hotelbox">
         <img
           className="hotel-img"
