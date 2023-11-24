@@ -18,7 +18,7 @@ const ReservationPage = () => {
       try {
         console.log("starting fetch");
         const response = await fetch(
-          `http://localhost:5001/booking/${cookies.id}`
+          `https://hotel-g7hx.onrender.com/booking/${cookies.id}`
         );
         if (response.status === 200) {
           console.log("response 200");

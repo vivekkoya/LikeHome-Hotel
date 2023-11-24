@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 })
 router.post('/register', async (req, res) => {
 	try {
+		
 		const {email, password, isAdmin} = req.body;
 		const existingHotel = await Hotel.findOne({email});
 

@@ -2,11 +2,10 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
-
-
 import listingRoutes from './routes/listings.js'
 import hotelRoutes from './routes/HotelLogin.js'
 import bookingRoutes from './routes/BookingsRoutes.js'
+//Expressjs Backend
 
 const app = express()
 
@@ -16,7 +15,9 @@ app.use(bodyParser.json())
 
 //ConnectionUrl: the url mongodb atlas give you to connect to db. PORT: is the port the server will run on
 const CONNECTION_URL = 'mongodb+srv://Winson:yptSeHMywBWNWR4G@hotel.pu5yiij.mongodb.net/?retryWrites=true&w=majority'
-const PORT = 5001
+const PORT = process.env.PORT || 5001
+
+// app.listen(PORT)
 
 //Setting up the connection to mongodb atlas
 mongoose

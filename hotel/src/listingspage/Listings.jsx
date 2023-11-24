@@ -40,7 +40,7 @@ const Listings = () => {
     const search = searchQuery.replace(" ", "%20");
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`,
+        `https://hotel-g7hx.onrender.com/listings/ListingInCity/${search}`,
         {
           method: "POST",
         }
@@ -115,7 +115,7 @@ const Listings = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`,
+        `https://hotel-g7hx.onrender.com/listings/ListingInCity/${search}`,
         {
           method: "POST",
           headers: {

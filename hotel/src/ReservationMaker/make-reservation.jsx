@@ -97,7 +97,7 @@ const MakeReservation = () => {
       guests: people[0].value,
     };
     console.log(booking);
-    const res = await fetch("http://localhost:5001/booking", {
+    const res = await fetch("https://hotel-g7hx.onrender.com/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
