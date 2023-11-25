@@ -91,6 +91,7 @@ router.post('/ListingInCity/:city', async (req, res) => {
             query['accessability'] = {$in: accessability};
         }
 
+        console.log(sortBy)
         let sortOptions = {};
         switch (sortBy) {
             case 'priceAsc':
@@ -114,6 +115,7 @@ router.post('/ListingInCity/:city', async (req, res) => {
             default:
                 sortOptions = {price: 1};
         }
+        console.log(sortOptions)
 
         const sortedListings = await Listing.find(query).sort(sortOptions).lean();
         console.log(sortedListings)

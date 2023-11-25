@@ -16,6 +16,22 @@ const Listings = () => {
   const [people, setPeople] = useState("");
   const [amenities, setAmenities] = useState("");
   const [accessibility, setAccessibility] = useState("");
+  const [sortPrice, setSortPrice] = useState(true);
+  const [sortBed, setSortBed] = useState(false);
+  const [sortPeople, setSortPeople] = useState(false);
+
+  const handleSortChange = (value) => {
+    setSortPrice(false);
+    setSortBed(false);
+    setSortPeople(false);
+    if (value === "price") {
+      setSortPrice(true);
+    } else if (value === "beds") {
+      setSortBed(true);
+    } else {
+      setSortPeople(true);
+    }
+  };
 
   // useEffect(() => {
   //   (async () => {
@@ -112,6 +128,13 @@ const Listings = () => {
       amenities: selectedAmenities,
       accessibility: selectedAccessibility,
     };
+    if (sortPrice) {
+      requestBody["sortBy"] = "priceAsc";
+    } else if (sortBed) {
+      requestBody["sortBy"] = "bedsAsc";
+    } else if (sortPeople) {
+      requestBody["sortBy"] = "peopleAsc";
+    }
 
     try {
       const res = await fetch(
@@ -230,6 +253,34 @@ const Listings = () => {
               {sliderValues.people}
             </label>
           </div>
+          <h2> Sort By</h2>
+          <label>
+            <input
+              type="checkbox"
+              value={"price"}
+              checked={sortPrice}
+              onChange={() => handleSortChange("price")}
+            ></input>
+            price
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value={"beds"}
+              checked={sortBed}
+              onChange={() => handleSortChange("beds")}
+            ></input>
+            bed
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value={"people"}
+              checked={sortPeople}
+              onChange={() => handleSortChange("people")}
+            ></input>
+            people
+          </label>
           <h2>Amenities</h2>
           <div>
             {[
@@ -274,7 +325,12 @@ const Listings = () => {
               </label>
             ))}
           </div>
-          <button onClick={applyChanges}>Apply Changes</button>
+          <button
+            onClick={applyChanges}
+            styles={{ padding: "4px 8px;", "margin-bottom": "8px" }}
+          >
+            Apply Changes
+          </button>
         </div>{" "}
         <div className="listing-cards">
           {listings.map((listing) => (
