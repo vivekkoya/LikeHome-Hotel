@@ -27,7 +27,7 @@ export function LoginForm(props) {
 
   const login = async () => {
     try {
-      const response = await fetch("http://localhost:5001/user/login", {
+      const response = await fetch("https://hotel-rod6.onrender.com/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

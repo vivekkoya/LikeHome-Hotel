@@ -62,10 +62,10 @@ const ReservationCard = (Props) => {
   const fetchData = async () => {
     try {
       console.log(
-        `http://localhost:5001/listing/getListings/${booking.listing}`
+        `https://hotel-rod6.onrender.com/listing/getListings/${booking.listing}`
       );
       const response = await fetch(
-        `http://localhost:5001/listings/getListings/${booking.listing}`
+        `https://hotel-rod6.onrender.com/listings/getListings/${booking.listing}`
       );
       if (response.status === 200) {
         console.log("response 200");
@@ -133,7 +133,7 @@ const ReservationCard = (Props) => {
   };
 
   const editReservation = async () => {
-    const updateUrl = `http://localhost:5001/booking/${booking._id}`;
+    const updateUrl = `https://hotel-rod6.onrender.com/booking/${booking._id}`;
     const editBookings = {
       checkInDate: start_date,
       checkOutDate: end_date,
@@ -171,7 +171,7 @@ const ReservationCard = (Props) => {
 
   const deleteReservation = async () => {
     console.log(booking.listing);
-    const deleteUrl = `http://localhost:5001/booking/${booking}._id}`;
+    const deleteUrl = `https://hotel-rod6.onrender.com/booking/${booking}._id}`;
     fetch(deleteUrl, {
       method: "DELETE",
       headers: {

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import mongoose from 'mongoose';
 
 describe('Hotel API', () => {
-  const baseUrl = 'http://localhost:5001'; // Update to your server's URL and port
+  const baseUrl = 'https://hotel-rod6.onrender.com'; // Update to your server's URL and port
 
   before(async () => {
     // Connect to your test database if needed

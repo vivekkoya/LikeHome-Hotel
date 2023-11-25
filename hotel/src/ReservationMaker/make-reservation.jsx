@@ -33,7 +33,7 @@ const MakeReservation = () => {
       console.log("start fetch");
       try {
         const response = await fetch(
-          `http://localhost:5001/listings/getListings/${id}`
+          `https://hotel-rod6.onrender.com/listings/getListings/${id}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -98,7 +98,7 @@ const MakeReservation = () => {
       guests: people[0].value,
     };
     console.log(booking);
-    const res = await fetch("http://localhost:5001/booking", {
+    const res = await fetch("https://hotel-rod6.onrender.com/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

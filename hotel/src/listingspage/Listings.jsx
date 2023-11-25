@@ -38,7 +38,7 @@ const Listings = () => {
   //     console.log("start fetch");
   //     try {
   //       const response = await fetch(
-  //         "http://localhost:5001/listings/getListings"
+  //         "https://hotel-rod6.onrender.com/listings/getListings"
   //       );
   //       if (!response.ok) {
   //         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -56,7 +56,7 @@ const Listings = () => {
     const search = searchQuery.replace(" ", "%20");
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`,
+        `https://hotel-rod6.onrender.com/listings/ListingInCity/${search}`,
         {
           method: "POST",
         }
@@ -138,7 +138,7 @@ const Listings = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`,
+        `https://hotel-rod6.onrender.com/listings/ListingInCity/${search}`,
         {
           method: "POST",
           headers: {
