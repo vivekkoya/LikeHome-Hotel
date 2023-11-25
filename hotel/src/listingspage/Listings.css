@@ -34,6 +34,7 @@ h2 {
 .my-datepicker p {
     margin-left: 15px;
     margin-bottom: 0px;
+    color: black;
 }
 
 .search-text-field {
@@ -43,7 +44,8 @@ h2 {
     width: 400px;
     height: 36px;
     padding: 0 32px;
-    font-size: 16px
+    font-size: 16px;
+    color: black
 }
 
 .search-icon {
