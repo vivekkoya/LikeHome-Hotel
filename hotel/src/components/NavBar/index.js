@@ -7,6 +7,8 @@ import { FaUser } from "react-icons/fa"
 const NavBar = () => {
     const [cookies, setCookies] = useCookies(['users', 'isAdmin'])
     var user = cookies.user
+    var points = cookies.points 
+
     if (!user) {
         user = ""
     }
@@ -78,9 +80,13 @@ const NavBar = () => {
                     <a className="button-link" href="/login">Sign In</a> }
             </li>
             <li>
-                { user !== "" && <div className="User-row">
+                { user !== "" && <div>
+                    {points !== null && <p> type of member: {points} points</p> }
+                    <div className="User-row">
+
                     <FaUser/>
                     <button className="user-name" onClick={logout}>{user}</button>
+                    </div>
                     </div> }
             </li>
 

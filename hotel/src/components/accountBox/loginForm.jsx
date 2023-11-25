@@ -42,13 +42,16 @@ export function LoginForm(props) {
       } else {
         setCookie("user", email, "/");
         const data = await response.json();
+        console.log(data);
+        console.log(data.rewards);
+        setCookie("points", data.rewards, { path: "/" });
         setCookie("id", data.id, { path: "/" });
         if (data.isAdmin) {
           setCookie("isAdmin", "hotel", "/");
         } else {
           setCookie("isAdmin", "client", "/");
         }
-        window.location.href = "/search";
+        //window.location.href = "/search";
       }
     } catch (error) {
       alert(error.message);
