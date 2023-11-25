@@ -67,5 +67,5 @@ const postSchema = mongoose.Schema({
 
 })
 
-const Listing = mongoose.model('Listing', postSchema)
-export default Listing 
+const Listing = mongoose.model('Listing', postSchema);
+export default Listing; 

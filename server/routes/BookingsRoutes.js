@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     const booking = req.body.booking;
-
+    // Finding available bookings
     const exists = await Booking.findOne({
       user: booking.user,
       $or: [

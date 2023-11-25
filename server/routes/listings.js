@@ -63,7 +63,7 @@ router.delete('/deleteListing/:listingId', async (req ,res) => {
 router.post('/ListingInCity/:city', async (req, res) => {
     try {
         const city = req.params.city
-        const {priceMin, priceMax, beds, people, amenities, accessability, sortBy} = req.body;
+        const {priceMin, priceMax, beds, people, amenities, accessibility, sortBy} = req.body;
         const query = {'location.city': city};
         console.log(req.body)
         
@@ -87,8 +87,8 @@ router.post('/ListingInCity/:city', async (req, res) => {
             query['amenities'] = {$in: amenities};
         }
 
-        if (accessability && accessability.length !== 0) {
-            query['accessability'] = {$in: accessability};
+        if (accessibility && accessibility.length !== 0) {
+            query['accessibility'] = {$in: accessibility};
         }
 
         console.log(sortBy)

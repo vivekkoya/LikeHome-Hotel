@@ -8,11 +8,12 @@ const pointSchema = mongoose.Schema({
 })
 
 const rewardCategorySchema = mongoose.Schema({
-    category: {//platinum, gold, diamond
+    category: { //platinum, gold, diamond
         type: String,
         required: true
     }
 })
 
-const Reward = mongoose.model('Reward', postSchema)
+
+const Reward = mongoose.model('Reward', pointSchema)
 export default Reward

@@ -23,8 +23,9 @@ const MakeReservation = () => {
     price: 0,
     room_details: {
       max_people: 1,
-    },
-    imgurl: ["/images/Listing1.jpeg"],
+    }
+    ,
+    imgurl: ["/images/loading-icon-animated-gif-27.gif"],
   });
 
   useEffect(() => {

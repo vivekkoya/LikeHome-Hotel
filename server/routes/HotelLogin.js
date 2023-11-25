@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt, { hash } from 'bcrypt';
 import Hotel from '../models/Hotel.js';
+import Reward from "../models/reward.js";
 
 const router = express.Router();
 
@@ -11,12 +12,12 @@ router.get('/', (req, res) => {
 })
 router.post('/register', async (req, res) => {
 	try {
-		const {email, password, isAdmin} = req.body;
-		const existingHotel = await Hotel.findOne({email});
+		const { email, password, isAdmin } = req.body;
+		const existingHotel = await Hotel.findOne({ email });
 
 		if (existingHotel) {
-			return res.status(400).json({message: 'User already exists'});
-		 }
+			return res.status(400).json({ message: 'User already exists' });
+		}
 
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
@@ -30,9 +31,9 @@ router.post('/register', async (req, res) => {
 
 		await newHotel.save();
 
-		res.status(201).json({message: 'Hotel registered successfully'});
+		res.status(201).json({ message: 'Hotel registered successfully' });
 	} catch (error) {
-		res.status(500).json({message: error.message });
+		res.status(500).json({ message: error.message });
 	}
 });
 
@@ -42,21 +43,21 @@ router.post('/login', async (req, res) => {
 	try {
 		const { email, password } = req.body;
 		const existingHotel = await Hotel.findOne({ 'email': email }).lean();
-	
+
 		if (!existingHotel) {
-		  return res.status(404).json({ message: 'User Does not exist' });
+			return res.status(404).json({ message: 'User Does not exist' });
 		}
-	
+
 		const passwordMatches = await bcrypt.compare(password, existingHotel.password);
-	
+
 		if (passwordMatches) {
-		  return res.status(200).json({ message: 'User Authenticated', isAdmin: existingHotel.isAdmin, id: existingHotel._id, rewards: existingHotel.rewards});
+			return res.status(200).json({ message: 'User Authenticated', isAdmin: existingHotel.isAdmin, id: existingHotel._id, rewards: existingHotel.rewards });
 		} else {
-		  return res.status(403).json({ message: 'Incorrect Password' });
+			return res.status(403).json({ message: 'Incorrect Password' });
 		}
-	  } catch (error) {
+	} catch (error) {
 		res.status(500).json({ message: error.message });
-	  }
+	}
 
 	//authenticate
 	// const username = req.body.email
@@ -71,6 +72,34 @@ router.post('/login', async (req, res) => {
 router.get('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/login');
+});
+
+//Handling client points
+router.put('/points/:id', async (req, res) => {
+	try {
+		const {id} = req.params;
+		const updateRewards = req.body;
+		console.log(updateRewards)
+
+		//Validate updateRewards here
+
+		const existingRewards = await Reward.findById(id);
+		console.log(existingRewards)
+
+		if(!existingRewards){
+			return res.status(404).json({message: 'Rewards not found'});
+		}
+		if(add)
+		Object.assign(existingRewards, updateRewards);
+
+		const saveReward = await existingRewards.save();
+
+		res.status(200).json(saveReward);
+	}
+	catch (error) {
+		console.error(error);
+		res.status(500).json({ message: 'Failed to edit rewards', error: error.message });
+	}
 });
 
 export default router;
