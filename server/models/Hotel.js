@@ -30,7 +30,12 @@ const HotelSchema = mongoose.Schema({
     listings: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Listing'
-    }]
+    }],
+    rewards: {
+      type: Number,
+      default: 0
+    }
+    
 });
 
 const Hotel = mongoose.model('Hotel', HotelSchema);
