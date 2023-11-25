@@ -74,11 +74,12 @@ router.get('/logout', (req, res) => {
 	res.redirect('/login');
 });
 
-//Handling client points
+//Handling client points 
 router.put('/points/:id', async (req, res) => {
 	try {
 		const {id} = req.params;
 		const updateRewards = req.body;
+		const {rewards} = req.body;
 		console.log(updateRewards)
 
 		//Validate updateRewards here
@@ -89,11 +90,12 @@ router.put('/points/:id', async (req, res) => {
 		if(!existingRewards){
 			return res.status(404).json({message: 'Rewards not found'});
 		}
-		if(add)
+		if(rewards > 0){
 		Object.assign(existingRewards, updateRewards);
 
 		const saveReward = await existingRewards.save();
-
+		}
+		
 		res.status(200).json(saveReward);
 	}
 	catch (error) {
@@ -101,5 +103,6 @@ router.put('/points/:id', async (req, res) => {
 		res.status(500).json({ message: 'Failed to edit rewards', error: error.message });
 	}
 });
+
 
 export default router;
