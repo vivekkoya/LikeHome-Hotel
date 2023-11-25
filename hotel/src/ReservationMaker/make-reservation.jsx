@@ -32,7 +32,7 @@ const MakeReservation = () => {
       console.log("start fetch");
       try {
         const response = await fetch(
-          `http://localhost:5001/listings/getListings/${id}`
+          `https://hotel-g7hx.onrender.com/listings/getListings/${id}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
