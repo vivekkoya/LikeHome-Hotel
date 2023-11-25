@@ -268,11 +268,13 @@ img {
 .home__subtitle{
   font-size: var(--h3-font-size);
   margin-bottom: .5rem;
+  color: blanchedalmond;
 }
 
 .home__title{
   font-size: var(--biggest-font-size);
   margin-bottom: 1rem;
+  color: blanchedalmond;
 
 }
 
@@ -317,6 +319,7 @@ img {
   bottom: 1rem;
   font-size: var(--h3-font-size);
   z-index: 1;
+  color: blanchedalmond;
 
 }
 
@@ -691,6 +694,7 @@ img {
 
   .explore__data,
   .explore__data .section__title{
+    color: blanchedalmond;
     text-align: initial;
   }
 
