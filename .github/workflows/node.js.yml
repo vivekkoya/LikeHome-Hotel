@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: ../hotel
+        cache-dependency-path: '**/package-lock.json'
     # - run: cd hotel
     # - run: npm install
     - run: npm ci
