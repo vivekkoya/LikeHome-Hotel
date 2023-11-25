@@ -78,23 +78,30 @@ router.get('/logout', (req, res) => {
 router.put('/points/:id', async (req, res) => {
 	try {
 		const {id} = req.params;
-		const updateRewards = req.body;
-		const {rewards} = req.body;
-		console.log(updateRewards)
+		const {rewards, add} = req.body;
 
 		//Validate updateRewards here
 
-		const existingRewards = await Reward.findById(id);
+		const existingRewards = await Hotel.findById(id);
 		console.log(existingRewards)
 
 		if(!existingRewards){
 			return res.status(404).json({message: 'Rewards not found'});
 		}
-		if(rewards > 0){
-		Object.assign(existingRewards, updateRewards);
+
+		console.log(add)
+		if (add) {
+			existingRewards.rewards = existingRewards.rewards + rewards;
+		} else {
+			existingRewards.rewards = existingRewards.rewards - rewards;
+			if (existingRewards.rewards <= 0) {
+				existingRewards.rewards = 0;
+			}
+		}
+
+		console.log(existingRewards)
 
 		const saveReward = await existingRewards.save();
-		}
 		
 		res.status(200).json(saveReward);
 	}

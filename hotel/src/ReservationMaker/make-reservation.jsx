@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 import "./styles.css";
 
 const MakeReservation = () => {
-  const [cookies, setStates] = useCookies(["users"]);
+  const [cookies, setCookies] = useCookies(["users"]);
   const { id, StartDate, EndDate } = useParams();
   const [details, setDetails] = useState({
     // Provide initial values for properties
@@ -23,8 +23,7 @@ const MakeReservation = () => {
     price: 0,
     room_details: {
       max_people: 1,
-    }
-    ,
+    },
     imgurl: ["/images/loading-icon-animated-gif-27.gif"],
   });
 
@@ -106,8 +105,31 @@ const MakeReservation = () => {
       body: JSON.stringify({ booking }),
     });
     if (res.status === 201) {
+      // the booking is successfull so we start adding points to the user
+      const points = Math.trunc(
+        details.price * ((end - start) / 86400000) * 12
+      );
+      const body = {
+        add: true,
+        rewards: points,
+      };
+      const response = await fetch(
+        `http://localhost:5001/user/points/${cookies.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const pts = await response.json();
+      console.log(pts);
+      console.log(pts.rewards);
+      setCookies("points", pts.rewards, { path: "/" });
       window.location.href = "/viewreservations";
     } else if (res.status === 401) {
+      // the booking is unsuccessfull
       alert(
         "You Already Have a Reservation for a portion of this stay. Please edit / remove that booking before making new reservation"
       );
