@@ -214,10 +214,10 @@ const ReservationCard = (Props) => {
       const start = new Date(booking.checkInDate);
       const end = new Date(booking.checkOutDate);
       const points =
-        Math.trunc((reservation.price * (end - start)) / 86400000) * 12;
+        0 - Math.trunc((reservation.price * (end - start)) / 86400000) * 12;
       console.log(points);
       const body = {
-        add: false,
+        add: true,
         rewards: points,
       };
       if (response.ok) {
@@ -240,7 +240,7 @@ const ReservationCard = (Props) => {
       }
     });
     closeDelete();
-    //window.location.href = "/viewreservations";
+    window.location.href = "/viewreservations";
   };
 
   return (
