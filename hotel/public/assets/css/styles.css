@@ -140,6 +140,8 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center; 
+  backdrop-filter: blur(10px);
+  z-index: 200;
 }
 
 .nav__log-img{
