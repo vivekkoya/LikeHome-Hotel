@@ -91,28 +91,6 @@ export function SignupForm(props) {
           value={pass2}
           onChange={pass2Change}
         />
-        <RadioButtonContainer>
-          <RadioButton checked={userType === "user"}>
-            <input
-              type="radio"
-              onChange={handleRadioChange}
-              value="user"
-              checked={userType === "user"}
-              style={{ display: "none" }}
-            />
-            Client
-          </RadioButton>
-          <RadioButton checked={userType === "hotel"}>
-            <input
-              type="radio"
-              onChange={handleRadioChange}
-              value="hotel"
-              checked={userType === "hotel"}
-              style={{ display: "none" }}
-            />
-            Owner
-          </RadioButton>
-        </RadioButtonContainer>
       </FormContainer>
       {!match && (
         <p style={{ color: "red" }}>Passwords don't match Please try again</p>

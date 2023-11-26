@@ -29,8 +29,8 @@
   border-radius: 1rem;
   padding: 1rem;
   text-decoration: none;
-  border: 3px solid #FBB03B;
-  color:#FBB03B;
+  border: 3px solid rgb(142, 168, 195);
+  color: rgb(142, 168, 195);
   margin: 16px;
   margin-left: 0px;
   font-size: 1.25rem;
@@ -39,7 +39,7 @@
 
 .button-link:hover {
   color: #14213D;
-  background-color: #FBB03B;
+  background-color: rgb(142, 168, 195);;
 }
 
 .row {
