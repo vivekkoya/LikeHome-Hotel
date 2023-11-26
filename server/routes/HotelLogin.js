@@ -92,6 +92,9 @@ router.put('/points/:id', async (req, res) => {
 		console.log(add)
 		if (add) {
 			existingRewards.rewards = existingRewards.rewards + rewards;
+			if (existingRewards.rewards <= 0) {
+				existingRewards.rewards = 0;
+			}
 		} else {
 			existingRewards.rewards = existingRewards.rewards - rewards;
 			if (existingRewards.rewards <= 0) {

@@ -153,7 +153,35 @@ const ReservationCard = (Props) => {
       body: JSON.stringify(editBookings),
     });
     if (response.ok) {
-      console.log("set reload triggered");
+      console.log(reservation.price);
+      console.log(booking.checkOutDate);
+      console.log(booking.checkInDate);
+      const start = new Date(booking.checkInDate);
+      const end = new Date(booking.checkOutDate);
+      const points =
+        Math.trunc(
+          (reservation.price * (end_date - start_date - (end - start))) /
+            86400000
+        ) * 12;
+      console.log(points);
+      const body = {
+        add: true,
+        rewards: points,
+      };
+      const response = await fetch(
+        `http://localhost:5001/user/points/${cookies.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const pts = await response.json();
+      console.log(pts);
+      console.log(pts.rewards);
+      setCookies("points", pts.rewards, { path: "/" });
       window.location.href = "/viewreservations";
     } else {
       alert(response.message);
