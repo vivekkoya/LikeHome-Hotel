@@ -2,6 +2,12 @@
     padding: 20px;
 }
 
+h2 {
+    padding-top: 12px;
+    color: #14213D;
+    text-align: center;
+}
+
 .header-bar {
     display: flex;
     flex-direction: row;
@@ -55,10 +61,11 @@
     height: 36px;
     width: fit-content;
     color: #F9F8F8;
-    background-color: #4D7093;
     font-size: 1.25rem;
     font-weight: 800;
-    padding: 1px 50px;
+    padding: 4px 8px;
+    background-image: linear-gradient(to right, #4D7093, #87A3C0); /* Main color */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
 }
 
 .listing-cards {
@@ -68,12 +75,14 @@
     overflow-y: scroll;
     height: 100%;
 }
-/**
+
 .filterbox {
-    background-color: lightgrey;
+    
     width: 300px;
     margin-top: 15px;
     border-radius: 10px;
+    background-image: linear-gradient(to right, #4D7093, #87A3C0); /* Main color */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
 }
 
 .find-body {
@@ -95,7 +104,7 @@
     font-weight: 800;
     padding: 4px 8px;
 }
-*/
+
 .side-menu {
     width: 250px;
     height: 50%;
@@ -110,7 +119,7 @@
 .side-menu.open {
     left: 0;
 }
-/**
+
 label {
     display: block;
     margin: 20px;
@@ -129,70 +138,21 @@ input[type=checkbox] {
 }
 
 button {
-    height: 30px;
-    width: fit-content;
-    color: #F9F8F8;
-    background-color: #14213E;
+    height: 40px;
+    width: 200px;
     font-size: 1rem;
     margin: 0 auto;
     display: block;
     font-size: 20px;
     border-radius: 5px;
+    background-image: linear-gradient(to right, #8EA8C3, #2C4C63); /* Main color */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
 }
-
 label {
     color: black
 }
-*/
+
 h3{
     color: black;
     text-align: center;
 }
-.filterbox {
-    display: flex;
-    flex-direction: column;
-    padding: 30px 20px; /* Increased top padding */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    background-image: linear-gradient(to right, #4D7093, #87A3C0); /* Main color */
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
-  }
-  
-  .filterbox h2 {
-    padding-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: white;
-  }
-  
-  .filterbox label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .filterbox input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  .filterbox input[type="range"] {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .filterbox button {
-    padding: 8px 16px;
-    border: 1px solid #007bff;
-    color: #007bff;
-    cursor: pointer;
-  }
-
-  .filterobx input{
-      color: white;
-  }
-.form-item{
-    padding: 10px;
-}
-

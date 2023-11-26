@@ -1,17 +1,14 @@
-p{
-    color: white;
-}
 .listing-card {
     height: 220px;
     border: 1px solid #CCCCCC;
     width: auto;
     margin: 16px;
     border-radius: 10px;
+    
     display: flex;
     flex-direction: row;
-    
     background-image: linear-gradient(to right, #4D7093, #87A3C0); /* Main color */
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.1 ); /* Subtle shadow effect */
 }
 
 .listing-image {
@@ -23,6 +20,7 @@ p{
 .listing-card:hover {
     background-color: #EFEFEF;
     box-shadow: 0px 0px 5px #CCCCCC;
+    
 }
 
 .listing-details {
@@ -62,8 +60,4 @@ p{
     display: flex;
     justify-content: space-between;
     margin: 6px 0px;
-}
-
-.p{
-    color: white;
 }
