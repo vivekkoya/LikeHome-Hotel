@@ -99,7 +99,7 @@ router.put('/points/:id', async (req, res) => {
 			}
 		}
 
-		console.log(existingRewards)
+		//console.log(existingRewards)
 
 		const saveReward = await existingRewards.save();
 		

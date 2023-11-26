@@ -5,6 +5,7 @@ import { FaBed, FaToilet, FaUser } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
+import { useCookies } from "react-cookie";
 
 const DeleteModal = ({ showModal, closeModal, proceedAction }) => {
   if (!showModal) {
@@ -30,6 +31,7 @@ const DeleteModal = ({ showModal, closeModal, proceedAction }) => {
 };
 
 const ReservationCard = (Props) => {
+  const [cookies, setCookies] = useCookies(["users"]);
   const booking = Props.reservation;
   console.log(Props.reservation);
   const [reservation, setReservation] = useState({
@@ -171,21 +173,46 @@ const ReservationCard = (Props) => {
 
   const deleteReservation = async () => {
     console.log(booking.listing);
-    const deleteUrl = `http://localhost:5001/booking/${booking}._id}`;
+    const deleteUrl = `http://localhost:5001/booking/${booking._id}`;
     fetch(deleteUrl, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
       },
-    }).then((response) => {
+    }).then(async (response) => {
+      console.log(reservation.price);
+      console.log(booking.checkOutDate);
+      console.log(booking.checkInDate);
+      const start = new Date(booking.checkInDate);
+      const end = new Date(booking.checkOutDate);
+      const points =
+        Math.trunc((reservation.price * (end - start)) / 86400000) * 12;
+      console.log(points);
+      const body = {
+        add: false,
+        rewards: points,
+      };
       if (response.ok) {
-        alert("Booking Deleted, Refresh page to update");
+        const response = await fetch(
+          `http://localhost:5001/user/points/${cookies.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        const pts = await response.json();
+        console.log(pts);
+        console.log(pts.rewards);
+        setCookies("points", pts.rewards, { path: "/" });
       } else {
         alert(response.message);
       }
     });
     closeDelete();
-    window.location.href = "/viewreservations";
+    //window.location.href = "/viewreservations";
   };
 
   return (
