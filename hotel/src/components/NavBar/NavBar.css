@@ -1,0 +1,12 @@
+.user-points {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.user-points > p {
+    margin-right: 10px;
+}
+
+.user-row {
+    font-size: 16px;
+}

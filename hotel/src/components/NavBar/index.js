@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCookies } from "react-cookie"
 import { FaUser } from "react-icons/fa"
+import "./NavBar.css"
 
 
 
@@ -8,6 +9,8 @@ const NavBar = () => {
     const [cookies, setCookies] = useCookies(['users', 'isAdmin'])
     var user = cookies.user
     var points = cookies.points 
+
+    
 
     if (!user) {
         user = ""
@@ -23,36 +26,20 @@ const NavBar = () => {
         window.location.href = "/login"
     }
 
+    var membership = <p style={{ color: "white" }}> Basic: {points} pts </p>;
+
+    if (points > 40000) {
+        membership = <p style={{ color: "#C5D0CE" }}> Platinum: {points} pts </p>;
+    } else if (points > 30000) {
+        membership = <p style={{ color: "#FFD971" }}> Gold: {points} pts </p>;
+    } else if (points > 20000) {
+        membership = <p style={{ color: "#CAD3D7" }}> Silver: {points} pts </p>;
+    } else if (points > 10000) {
+        membership = <p style={{ color: "#C2783F" }}> Bronze: {points} pts </p>;
+    }    
+
+
   return (
-      /*
-    <nav className="site-nav">
-        <a href="/" className="site-name">LikeHome</a>
-        <ul className="row">
-            <li>
-                <a className="middle-link" href="/search"> Find Hotel</a>
-            </li>
-            <li>
-                { type === "client" && <a className="middle-link" href="/viewreservations"> View Reservations </a> }
-            </li>
-            <li>
-                { type === "hotel" && <a className="middle-link" href="/hotelviewbookings"> View Bookings </a> }
-            </li>
-        </ul>
-        <ul className="row">
-            <li>
-                
-                { user === "" && 
-                    <a className="button-link" href="/login">Sign In</a> }
-            </li>
-            <li>
-                { user !== "" && <div className="User-row">
-                    <FaUser/>
-                    <button className="user-name" onClick={logout}>{user}</button>
-                    </div> }
-            </li>
-        </ul>
-    </nav>
-    **/
 
     <header class="header" id="header">
          <nav class = "nav container " >
@@ -80,8 +67,9 @@ const NavBar = () => {
                     <a className="button-link" href="/login">Sign In</a> }
             </li>
             <li>
-                { user !== "" && <div>
-                    {points !== null && <p> type of member: {points} points</p> }
+                { user !== "" && <div className="row user-points">
+                    {/* look to line 28 - 38 to see how membership is defined*/}
+                    {points !== null && membership } 
                     <div className="User-row">
 
                     <FaUser/>

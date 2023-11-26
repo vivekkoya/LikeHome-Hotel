@@ -2,12 +2,6 @@
     padding: 20px;
 }
 
-h2 {
-    padding-top: 12px;
-    color: #14213D;
-    text-align: center;
-}
-
 .header-bar {
     display: flex;
     flex-direction: row;
@@ -61,10 +55,10 @@ h2 {
     height: 36px;
     width: fit-content;
     color: #F9F8F8;
-    background-color: #14213E;
+    background-color: #4D7093;
     font-size: 1.25rem;
     font-weight: 800;
-    padding: 4px 8px;
+    padding: 1px 50px;
 }
 
 .listing-cards {
@@ -74,7 +68,7 @@ h2 {
     overflow-y: scroll;
     height: 100%;
 }
-
+/**
 .filterbox {
     background-color: lightgrey;
     width: 300px;
@@ -101,7 +95,7 @@ h2 {
     font-weight: 800;
     padding: 4px 8px;
 }
-
+*/
 .side-menu {
     width: 250px;
     height: 50%;
@@ -116,7 +110,7 @@ h2 {
 .side-menu.open {
     left: 0;
 }
-
+/**
 label {
     display: block;
     margin: 20px;
@@ -145,11 +139,59 @@ button {
     font-size: 20px;
     border-radius: 5px;
 }
+
 label {
     color: black
 }
-
+*/
 h3{
     color: black;
     text-align: center;
+}
+.filterbox {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px; /* Increased top padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, #4D7093, #87A3C0); /* Main color */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
+  }
+  
+  .filterbox h2 {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .filterbox label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .filterbox input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .filterbox input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .filterbox button {
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  .filterobx input{
+      color: white;
+  }
+.form-item{
+    padding: 10px;
 }

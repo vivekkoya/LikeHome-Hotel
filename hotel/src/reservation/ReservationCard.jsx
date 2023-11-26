@@ -5,6 +5,7 @@ import { FaBed, FaToilet, FaUser } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-dropdown-select";
+import { useCookies } from "react-cookie";
 
 const DeleteModal = ({ showModal, closeModal, proceedAction }) => {
   if (!showModal) {
@@ -30,6 +31,7 @@ const DeleteModal = ({ showModal, closeModal, proceedAction }) => {
 };
 
 const ReservationCard = (Props) => {
+  const [cookies, setCookies] = useCookies(["users"]);
   const booking = Props.reservation;
   console.log(Props.reservation);
   const [reservation, setReservation] = useState({
@@ -151,7 +153,35 @@ const ReservationCard = (Props) => {
       body: JSON.stringify(editBookings),
     });
     if (response.ok) {
-      console.log("set reload triggered");
+      console.log(reservation.price);
+      console.log(booking.checkOutDate);
+      console.log(booking.checkInDate);
+      const start = new Date(booking.checkInDate);
+      const end = new Date(booking.checkOutDate);
+      const points =
+        Math.trunc(
+          (reservation.price * (end_date - start_date - (end - start))) /
+            86400000
+        ) * 12;
+      console.log(points);
+      const body = {
+        add: true,
+        rewards: points,
+      };
+      const response = await fetch(
+        `https://hotel-rod6.onrender.com/user/points/${cookies.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      const pts = await response.json();
+      console.log(pts);
+      console.log(pts.rewards);
+      setCookies("points", pts.rewards, { path: "/" });
       window.location.href = "/viewreservations";
     } else {
       alert(response.message);
@@ -171,15 +201,40 @@ const ReservationCard = (Props) => {
 
   const deleteReservation = async () => {
     console.log(booking.listing);
-    const deleteUrl = `https://hotel-rod6.onrender.com/booking/${booking}._id}`;
+    const deleteUrl = `https://hotel-rod6.onrender.com/booking/${booking._id}`;
     fetch(deleteUrl, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
       },
-    }).then((response) => {
+    }).then(async (response) => {
+      console.log(reservation.price);
+      console.log(booking.checkOutDate);
+      console.log(booking.checkInDate);
+      const start = new Date(booking.checkInDate);
+      const end = new Date(booking.checkOutDate);
+      const points =
+        0 - Math.trunc((reservation.price * (end - start)) / 86400000) * 12;
+      console.log(points);
+      const body = {
+        add: true,
+        rewards: points,
+      };
       if (response.ok) {
-        alert("Booking Deleted, Refresh page to update");
+        const response = await fetch(
+          `https://hotel-rod6.onrender.com/user/points/${cookies.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        const pts = await response.json();
+        console.log(pts);
+        console.log(pts.rewards);
+        setCookies("points", pts.rewards, { path: "/" });
       } else {
         alert(response.message);
       }
