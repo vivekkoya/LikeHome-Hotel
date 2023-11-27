@@ -44,9 +44,14 @@ const NavBar = () => {
     <header class="header" id="header">
          <nav class = "nav container " >
             <div>
-               <a href="#" class="nav__logo">
-                  <img src="assets/img/Suite_Spot_Logo-01.png" alt="explore image" class="logo__perfil" />
-                  SuiteSpot
+               <a href="#" class="nav__name">
+                  <div className="main-text">LikeHome</div>
+                  <div className="subheader">
+                    Powered by SuiteSpot
+                    <div className="logo-in-navbar">
+                        <img src="assets/img/Suite_Spot_Logo-01.png" alt="explore image" class="logo__perfil" />
+                    </div>
+                  </div>
                </a>
             </div>
             

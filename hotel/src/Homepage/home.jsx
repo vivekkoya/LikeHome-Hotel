@@ -20,7 +20,7 @@ class Home extends React.Component{
                <div class="home__data">
                   
                   <h3 class="home__subtitle">
-                  Welcome To SuiteSpot
+                  Welcome To LikeHome
                   </h3>
                   <h1 class="home__title">
                      Explore <br/>
@@ -76,7 +76,7 @@ class Home extends React.Component{
                       
                   </p>
                   <a href="#explore" class="button">
-                     Explore suiteSpot <i class="ri-arrow-right-line"></i>
+                     Explore LikeHome <i class="ri-arrow-right-line"></i>
                   </a>
                </div>
                <div class="about__image">
