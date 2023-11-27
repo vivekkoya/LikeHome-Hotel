@@ -76,7 +76,7 @@ class Home extends React.Component{
                       
                   </p>
                   <a href="#explore" class="button">
-                     Explore suiteSpot <i class="ri-arrow-right-line"></i>
+                     Explore SuiteSpot <i class="ri-arrow-right-line"></i>
                   </a>
                </div>
                <div class="about__image">
