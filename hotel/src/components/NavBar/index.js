@@ -59,7 +59,7 @@ const NavBar = () => {
                      <a href="/search" class="nav__link">Search</a>
                   </li>
                   <li class="nav__item">
-                     <a href="/viewreservations" class="nav__link">View Reservations</a>
+                     <a href="/viewreservations" class="nav__link">MyBookings</a>
                   </li>
                   <li>
                 
