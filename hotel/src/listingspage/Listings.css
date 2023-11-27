@@ -46,8 +46,7 @@ h2 {
     width: 400px;
     height: 36px;
     padding: 0 32px;
-    font-size: 16px;
-    color: #333333
+    font-size: 16px
 }
 
 .search-icon {
@@ -58,14 +57,13 @@ h2 {
     /* Adjust the value to position the icon */
     transform: translatex(-2475%) translatey(10%) !important;
     z-index: 10 !important;
-    color: #333333
 }
 
 .search-button {
     border-radius: 10px;
     height: 36px;
     width: fit-content;
-    color: black;
+    color: #F9F8F8;
     font-size: 1.25rem;
     font-weight: 800;
     padding: 4px 8px;
