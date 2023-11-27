@@ -47,7 +47,7 @@ export function SignupForm(props) {
     }
     try {
       const isAdmin = userType === "hotel";
-      const response = await fetch("http://localhost:5001/user/register", {
+      const response = await fetch("https://hotel-rod6.onrender.com/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
