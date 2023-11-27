@@ -29,7 +29,8 @@ h2 {
     border-radius: 10px;
     border: 1px solid #14213D;
     margin: 0 15px 0 0;
-    background: white
+    background: white;
+    color: #333333
 }
 
 .my-datepicker p {
@@ -97,7 +98,8 @@ h2 {
 .find-body {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    margin-left: 125px;
+    justify-content: left;
     margin-top: 20px;
     backdrop-filter: blur(10px);
 }
