@@ -7,7 +7,7 @@
     
     display: flex;
     flex-direction: row;
-    background-image: linear-gradient(to right, #4D7093, #8faece); /* Main color */
+    background-image: linear-gradient(to right, #111111, #444444); /* Main color */
     box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.1 ); /* Subtle shadow effect */
 }
 

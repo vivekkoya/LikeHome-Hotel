@@ -37,6 +37,7 @@ body {
 .hotelbox h1 {
     padding-left: 20px;
     margin: 10px 0px 0px 0px;
+    color: #8ea8c2
 }
 
 .address {
@@ -62,6 +63,10 @@ body {
 .info-form h3 {
     padding-right: 5px;
     font-size: medium
+}
+
+.info-form h1 {
+    color: #8ea8c2
 }
 
 .date-picker {

@@ -54,6 +54,7 @@
   font-weight: 600;
   color: rgb(142, 168, 195);
   margin-left: 4px;
+  box-shadow: none;
 }
 
 .User-row {
