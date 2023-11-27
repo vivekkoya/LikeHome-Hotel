@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const BoxContainer = styled.div`
-  width: 178%;
-  display: absolute;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
 `;
 
 export const FormContainer = styled.form`
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
@@ -23,21 +23,22 @@ export const MutedLink = styled.a`
 `;
 
 export const BoldLink = styled.a`
-  font-size: 25px;
-  color: rgb(241, 196, 15);
+  font-size: 11px;
+  color: rgb(142, 168, 195);
   font-weight: 500;
   text-decoration: none;
   margin: 0 4px;
 `;
 
 export const Input = styled.input`
+  width: 100%;
   height: 42px;
   outline: none;
   border: 1px solid rgba(200, 200, 200, 0.3);
-  padding: 10px 20px;
+  padding: 0px 10px;
   border-bottom: 1.4px solid transparent;
   transition: all 200ms ease-in-out;
-  font-size: 15px;
+  font-size: 12px;
 
   &::placeholder {
     color: rgba(200, 200, 200, 1);
@@ -54,8 +55,8 @@ export const Input = styled.input`
 `;
 
 export const SubmitButton = styled.button`
-  padding: 12px 200px;
-  text-align: center;
+  width: 100%;
+  padding: 11px 40%;
   color: #fff;
   font-size: 15px;
   font-weight: 600;
@@ -63,40 +64,10 @@ export const SubmitButton = styled.button`
   border-radius: 100px 100px 100px 100px;
   cursor: pointer;
   transition: all, 240ms ease-in-out;
-  background: rgb(241, 196, 15);
-  background: linear-gradient(
-    58deg,
-    rgba(241, 196, 15, 1) 20%,
-    rgba(243, 172, 18, 1) 100%
-  );
+  background-image: linear-gradient(to right, #8EA8C3, #2C4C63); /* Main color */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
 
   &:hover {
-    filter: brightness(1.03);
+    filter: brightness(1.5);
   }
-`;
-
-export const RadioButtonContainer = styled.div`
-  height: 42px;
-  outline: none;
-  border: 1px solid rgba(200, 200, 200, 0.3);
-  padding: 10px 20px;
-  border-bottom: 1.4px solid transparent;
-  transition: all 200ms ease-in-out;
-  font-size: 15px;
-  display: flex;
-  justify-content: space-around;
-`;
-
-export const RadioButton = styled.label`
-  padding: 6px;
-  min-width: 100px;
-  border: 2px solid rgb(241, 196, 15);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: ${(props) => (props.checked ? "white" : "rgb(241, 196, 15)")};
-  background-color: ${(props) =>
-    props.checked ? "rgb(241, 196, 15)" : "white"};
 `;

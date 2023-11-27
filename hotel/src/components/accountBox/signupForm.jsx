@@ -47,7 +47,7 @@ export function SignupForm(props) {
     }
     try {
       const isAdmin = userType === "hotel";
-      const response = await fetch("https://hotel-rod6.onrender.com/user/register", {
+      const response = await fetch("http://localhost:5001/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,28 +91,6 @@ export function SignupForm(props) {
           value={pass2}
           onChange={pass2Change}
         />
-        <RadioButtonContainer>
-          <RadioButton checked={userType === "user"}>
-            <input
-              type="radio"
-              onChange={handleRadioChange}
-              value="user"
-              checked={userType === "user"}
-              style={{ display: "none" }}
-            />
-            Client
-          </RadioButton>
-          <RadioButton checked={userType === "hotel"}>
-            <input
-              type="radio"
-              onChange={handleRadioChange}
-              value="hotel"
-              checked={userType === "hotel"}
-              style={{ display: "none" }}
-            />
-            Owner
-          </RadioButton>
-        </RadioButtonContainer>
       </FormContainer>
       {!match && (
         <p style={{ color: "red" }}>Passwords don't match Please try again</p>

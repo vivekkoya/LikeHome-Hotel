@@ -6,26 +6,26 @@ import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
 
 const BoxContainer = styled.div`
-  margin-top: 5%;
-  width: 500px;
-  min-height: 550px;
+  width: 280px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
   background-color: #fff;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
-  position: relative;
+  position: absolute;
   overflow: hidden;
+  top: 15%;
 `;
 
 const TopContainer = styled.div`
-  //width: 100%;
-  height: 550px;
+  width: 100%;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: 2rem;
+  padding-bottom: 5em;
 `;
 
 const BackDrop = styled(motion.div)`
@@ -35,25 +35,23 @@ const BackDrop = styled(motion.div)`
   display: flex;
   flex-direction: column;
   border-radius: 50%;
-  transform: rotate(230deg);
-  top: -60px;
-  left: -260px;
-  background: rgb(241, 196, 15);
-  background: linear-gradient(
-    58deg,
-    rgba(241, 196, 15, 1) 20%,
-    rgba(243, 172, 18, 1) 100%
-  );
+  transform: rotate(60deg);
+  top: -290px;
+  left: -70px;
+  background-image: linear-gradient(to right, #8EA8C3, #2C4C63); /* Main color */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
 `;
 
+
+
 const HeaderContainer = styled.div`
-  width: -100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 const HeaderText = styled.h2`
-  font-size: 100px;
+  font-size: 30px;
   font-weight: 600;
   line-height: 1.24;
   color: #fff;
@@ -64,10 +62,11 @@ const HeaderText = styled.h2`
 const SmallText = styled.h5`
   color: #fff;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 15px;
   z-index: 10;
-  margin: 50;
+  margin: 10px;
   margin-top: 10px;
+  text-aign: center;
 `;
 
 const InnerContainer = styled.div`
@@ -75,7 +74,6 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 1.8em;
-  margin-bottom: 5px;
 `;
 
 const backdropVariants = {

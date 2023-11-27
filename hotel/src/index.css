@@ -1,7 +1,7 @@
 
 
 .site-name {
-  color: #FBB03B;
+  color: rgb(142, 168, 195);
   font-size: 3rem;
   font-Weight: 600;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -21,7 +21,7 @@
 }
 
 .middle-link:hover {
-  color:#FBB03B;
+  color:rgb(142, 168, 195);
 }
 
 
@@ -29,8 +29,8 @@
   border-radius: 1rem;
   padding: 1rem;
   text-decoration: none;
-  border: 3px solid #FBB03B;
-  color:#FBB03B;
+  border: 3px solid rgb(142, 168, 195);
+  color: rgb(142, 168, 195);
   margin: 16px;
   margin-left: 0px;
   font-size: 1.25rem;
@@ -39,7 +39,7 @@
 
 .button-link:hover {
   color: #14213D;
-  background-color: #FBB03B;
+  background-color: rgb(142, 168, 195);;
 }
 
 .row {
@@ -52,25 +52,25 @@
   background: none;
   border: none;
   font-weight: 600;
-  color: #fbb03b;
+  color: rgb(142, 168, 195);
   margin-left: 4px;
 }
 
 .User-row {
-  color: #fbb03b;
+  color: rgb(142, 168, 195);
   display: flex;
   flex-direction: row;
   width: fit-content;
   justify-content: center;
   align-items:center;
-  border: 2px solid #fbb03b;
+  border: 2px solid rgb(142, 168, 195);
   padding: 0.75rem;
   border-radius: 1rem;
 }
 
 .User-row:hover {
   color: #14213d;
-  background-color: #fbb03b
+  background-color: rgb(142, 168, 195)
 }
 
 .User-row:hover button {
