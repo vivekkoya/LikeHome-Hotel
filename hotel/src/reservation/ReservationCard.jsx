@@ -64,14 +64,15 @@ const ReservationCard = (Props) => {
   const fetchData = async () => {
     try {
       console.log(
-        `https://hotel-rod6.onrender.com/listing/getListings/${booking.listing}`
+        `http://localhost:5001/listing/getListings/${booking.listing}`
       );
       const response = await fetch(
-        `https://hotel-rod6.onrender.com/listings/getListings/${booking.listing}`
+        `http://localhost:5001/listings/getListings/${booking.listing}`
       );
       if (response.status === 200) {
         console.log("response 200");
         const data = await response.json();
+        console.log(data);
 
         console.log(data.imgurl);
         const start = new Date(booking.checkInDate);
@@ -135,7 +136,7 @@ const ReservationCard = (Props) => {
   };
 
   const editReservation = async () => {
-    const updateUrl = `https://hotel-rod6.onrender.com/booking/${booking._id}`;
+    const updateUrl = `http://localhost:5001/booking/${booking._id}`;
     const editBookings = {
       checkInDate: start_date,
       checkOutDate: end_date,
@@ -169,7 +170,7 @@ const ReservationCard = (Props) => {
         rewards: points,
       };
       const response = await fetch(
-        `https://hotel-rod6.onrender.com/user/points/${cookies.id}`,
+        `http://localhost:5001/user/points/${cookies.id}`,
         {
           method: "PUT",
           headers: {
@@ -201,7 +202,7 @@ const ReservationCard = (Props) => {
 
   const deleteReservation = async () => {
     console.log(booking.listing);
-    const deleteUrl = `https://hotel-rod6.onrender.com/booking/${booking._id}`;
+    const deleteUrl = `http://localhost:5001/booking/${booking._id}`;
     fetch(deleteUrl, {
       method: "DELETE",
       headers: {
@@ -222,7 +223,7 @@ const ReservationCard = (Props) => {
       };
       if (response.ok) {
         const response = await fetch(
-          `https://hotel-rod6.onrender.com/user/points/${cookies.id}`,
+          `http://localhost:5001/user/points/${cookies.id}`,
           {
             method: "PUT",
             headers: {
