@@ -138,7 +138,7 @@ const Listings = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/listings/ListingInCity/${search}`,
+        `https://hotel-rod6.onrender.com/listings/ListingInCity/${search}`,
         {
           method: "POST",
           headers: {
