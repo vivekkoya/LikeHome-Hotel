@@ -1,6 +1,6 @@
 body h1 {
     margin: 5px;
-    color: #14213d
+    color: #8ea8c2
 }
 
 body p {
@@ -61,7 +61,7 @@ body p {
     padding: 0px;
     font-size: small;
     font-weight: 500;
-    color: #777;
+    color: #dddddd;
 }
 
 .descriptor-box {
@@ -81,11 +81,11 @@ body p {
 .res-btn {
     outline: none;
     width: 100px;
-    color: #14213d;
+    color: #8ea8c2;
     font-weight: bolder;
     font-size: 20px;
     border-radius: 10px;
-    border: 3px solid #14213d;
+    border: 3px solid #8ea8c2;
     background: transparent;
     box-shadow: 0px 0px 4px #777;
     padding: 4px 0px 4px 0px !important;
@@ -105,7 +105,8 @@ body p {
     padding: 10px 0px 10px 0px;
     border-radius: 15px;
     box-shadow: 0px 0px 4px #777;
-    margin-bottom: 24px
+    margin-bottom: 24px;
+    color:#8ea8c2
 }
 
 .room-details > div {
@@ -113,7 +114,7 @@ body p {
     flex-direction: row;
     align-items: center;
     margin: 10px 12px;
-    color: #14213d
+    color: white
 }
 
 .room-details > div > h2 {
@@ -130,20 +131,22 @@ body p {
     background-color: white;
     border: 1px solid #000;
     border-radius: 8px; /* Round the edges */
-    box-shadow: 0 0 10px rgba(4, 4, 4, 3); /* Adding box shadow */
+    box-shadow: 0 0 10px #fff; /* Adding box shadow */
     padding: 20px;
     z-index: 9999;
     /* Add more styles according to your design */
   }
   
   .modal.show {
+    background-color: black;
     display: block;
   }
 
   .selector-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly
+    justify-content: space-evenly;
+    margin-top: 5px;
   }
   
   .form-item {
@@ -156,6 +159,10 @@ body p {
 
   .modal h1 {
     margin: 4px 0px 18px 0px;
+  }
+
+  .modal-content p {
+    margin-bottom: 10px
   }
 
   .adjustment h2 {
