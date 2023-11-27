@@ -46,7 +46,7 @@ const NavBar = () => {
             <div>
                <a href="#" class="nav__logo">
                   <img src="assets/img/Suite_Spot_Logo-01.png" alt="explore image" class="logo__perfil" />
-                  SuiteSpot
+                  LikeHome
                </a>
             </div>
             
