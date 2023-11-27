@@ -1,53 +1,13 @@
 import React from 'react'
-
-
+import Reveal from 'react-reveal/Reveal';
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
 class Home extends React.Component{
     render(){
         return(    
             <div>
                 
-  {/*  <!--==================== HEADER ====================--> */}
-     {/*  <header class="header" id="header">
-         <nav class = "nav container ">
-            <div class="nav__logo-img">
-               <a href="#" class="nav__logo">
-                  <img src="assets/img/Suite_Spot_Logo-01.png" alt="explore image" class="logo__perfil" />
-                  SuiteSpot
-               </a>
-            </div>
-            
-            <div class="nav__menu" id="nav-menu">
-               <ul class="nav__list">
-                  <li class="nav__item">
-                     <a href="#home" class="nav__link">Home</a>
-                  </li>
-                  <li class="nav__item">
-                     <a href="#about" class="nav__link">About</a>
-                  </li>
-                  <li class="nav__item">
-                     <a href="#popular" class="nav__link">Popular</a>
-                  </li>
-                  <li class="nav__item">
-                     <a href="#explore" class="nav__link">Testimonials</a>
-                  </li>
-                  <li class="nav__item">
-                     <a href="#" class="nav__link">Login</a>
-                  </li>
-               </ul>
 
-              {/*  <!-- Close button--> */}
-               {/* <div class="nav__close" id="nav-close">
-                  <i class="ri-close-line"> </i>
-               </div>
-            </div>
- */}
-           {/*  <!-- toggle button--> */}
-         {/*    <div class="nav__toggle" id="nav-toggle">
-               <i class="ri-menu-fill"></i>
-            </div>
-         
-         </nav> */}
-      {/* </header>  */}
 
       {/* <!--==================== MAIN ====================--> */}
       <main class="main">
@@ -58,8 +18,9 @@ class Home extends React.Component{
 
             <div class="home__container container grid">
                <div class="home__data">
+                  
                   <h3 class="home__subtitle">
-                     Welcome To SuiteSpot
+                  Welcome To SuiteSpot
                   </h3>
                   <h1 class="home__title">
                      Explore <br/>
@@ -69,10 +30,12 @@ class Home extends React.Component{
                      Live the trips exploring the world, discover paradises, islands,
                      mountains and much more, get your hotel now.
                   </p>
-                  <a href="#" class="button">
+                  <a href="/search" class="button">
                      Start Your Journey <i class="ri-arrow-right-line"></i>
                   </a>
+                 
                </div>
+            
                <div class="home__cards grid">
                   <article class="home__card">
                      <img src="assets/img/pexels-asad-photo-maldives-1287460.jpg" alt="home image" class="home__card-img"/>
@@ -191,14 +154,38 @@ class Home extends React.Component{
                      </h2>
 
                      <p class="explore__description">
-                        Add description
+                     I recently stayed at Grace Hotel and it was superb! The room was stylish, cozy, and spotless. The staff was incredibly friendly and went out of their way to make my stay special. The central location made it easy to explore the city, and the on-site dining was top-notch. Can't wait to return! Highly recommend.
                      </p>
                   </div>
                   <div class="explore__user">
                      <img src="assets/img/explore-perfil.png" alt="explore image" class="explore__perfil"/>
                      <span class="explore__name"> Ayush Shresth</span>
                   </div>
+                  
+                  <div class="explore__data">
+                     <p class="explore__description">
+                     I recently had the pleasure of staying at Hilton in Barcelona, and I can't say enough good things about it. The hotel is absolutely stunning, with a beautiful lobby, elegant rooms, and a rooftop pool with breathtaking views of the city. But what really sets [Hotel Name] apart is its amazing staff. Everyone from the front desk to the housekeeping staff was so friendly and helpful. They went above and beyond to make sure my stay was perfect.
+                     </p>
+                  </div>
+                  <div class="explore__user">
+                     <img src="assets/img/explore-perfil.png" alt="explore image" class="explore__perfil"/>
+                     <span class="explore__name"> Adam Sandler</span>
+                  </div>
+
+                  <div class="explore__data">
+                     <p class="explore__description">
+                     Stepping into the Icehotel is like entering a world of dreams, a place where ice and art intertwine to create an unforgettable experience. From the moment you arrive, you're greeted by the hotel's iconic ice sculptures, each one a masterpiece of creativity and craftsmanship. The hotel's rooms and suites are all made of ice, and they offer a unique and cozy way to experience the Swedish winter.                     </p>
+                  </div>
+                  <div class="explore__user">
+                     <img src="assets/img/explore-perfil.png" alt="explore image" class="explore__perfil"/>
+                     <span class="explore__name"> Megan Fox</span>
+                  </div>
+
+                  
+
                 </div>
+
+                
             </div>
          </section>
          
@@ -211,7 +198,7 @@ class Home extends React.Component{
                      Begins Here
                   </h2>
                   <p class="join description">
-                     add description
+                  Embark on an unforgettable adventure with our thrilling vacation package! Dive into the heart of nature's wonders, exploring breathtaking landscapes and discovering hidden gems. From adrenaline-pumping activities like zip-lining through lush canopies to serene moments under starlit skies, this vacation is crafted for the bold and the curious. Unleash your inner adventurer, create lasting memories, and return home with tales of epic experiences. Dare to dream, dare to explore—your adventure awaits!
                   </p>
                  {/*  <!--Add a link to register page--> */}
                </div>
@@ -225,13 +212,16 @@ class Home extends React.Component{
 
 
             {/*  <!--=============== SCROLLREVEAL ===============--> */}
-            <script src="assets/js/scrollreveal.min.js"></script>
+            <script src="hotel/src/Homepage/scrollreveal.min.js">
+               
+            </script>
 
             {/* <!--=============== MAIN JS ===============--> */}
-            <script src="assets/js/main.js"></script>
+            <script src="hotel/src/Homepage/main.js"></script>
         </div>
         );
     }
 }
+
 
 export default Home;

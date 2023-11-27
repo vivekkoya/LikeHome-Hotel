@@ -19,7 +19,6 @@ const Listings = () => {
   const [sortPrice, setSortPrice] = useState(true);
   const [sortBed, setSortBed] = useState(false);
   const [sortPeople, setSortPeople] = useState(false);
-  const [showFilterBox, setShowFilterBox] = useState(false);
 
   const handleSortChange = (value) => {
     setSortPrice(false);
@@ -39,7 +38,7 @@ const Listings = () => {
   //     console.log("start fetch");
   //     try {
   //       const response = await fetch(
-  //         "https://hotel-rod6.onrender.com/listings/getListings"
+  //         "http://localhost:5001/listings/getListings"
   //       );
   //       if (!response.ok) {
   //         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -57,7 +56,7 @@ const Listings = () => {
     const search = searchQuery.replace(" ", "%20");
     try {
       const res = await fetch(
-        `https://hotel-rod6.onrender.com/listings/ListingInCity/${search}`,
+        `http://localhost:5001/listings/ListingInCity/${search}`,
         {
           method: "POST",
         }
@@ -115,10 +114,6 @@ const Listings = () => {
       [name]: value,
     }));
   };
-  const toggleFilterBox = () => {
-    setShowFilterBox((prevState) => !prevState);
-  };
-
   const applyChanges = async () => {
     console.log("Selected Amenities:", selectedAmenities);
     console.log("Selected Accessibility:", selectedAccessibility);
@@ -143,7 +138,7 @@ const Listings = () => {
 
     try {
       const res = await fetch(
-        `https://hotel-rod6.onrender.com/listings/ListingInCity/${search}`,
+        `http://localhost:5001/listings/ListingInCity/${search}`,
         {
           method: "POST",
           headers: {
@@ -204,15 +199,8 @@ const Listings = () => {
             Search
           </button>
         </div>
-        <button
-          className="search-button"
-          onClick={toggleFilterBox}
-          style={{ marginRight: "10px" }}
-        >
-          Filters
-        </button>
       </div>
-      {showFilterBox && (
+      <div className="find-body">
         <div className="filterbox">
           <h2>Filter Options</h2>
           <div>
@@ -265,7 +253,6 @@ const Listings = () => {
               {sliderValues.people}
             </label>
           </div>
-
           <h2> Sort By</h2>
           <label>
             <input
@@ -294,8 +281,8 @@ const Listings = () => {
             ></input>
             people
           </label>
-          
           <h2>Amenities</h2>
+          <div>
             {[
               "Pool",
               "Free Wifi",
@@ -311,13 +298,14 @@ const Listings = () => {
                   value={amenity}
                   checked={selectedAmenities.includes(amenity)}
                   onChange={() => handleCheckboxChange("amenities", amenity)}
-                  
                 />
                 {amenity}
               </label>
             ))}
+          </div>
 
           <h2>Accessibility</h2>
+          <div>
             {[
               "WheelChair Accessible",
               "Staff Asl Trained",
@@ -336,22 +324,21 @@ const Listings = () => {
                 {accessibility}
               </label>
             ))}
-
-               <button
+            
+          </div>
+          <button
             onClick={applyChanges}
-            styles={{ padding: "4px 8px;", "margin-bottom": "8px" }}
+            styles={{ padding: "10px 8px;", "margin-bottom": "1px" }}
           >
             Apply Changes
           </button>
-          </div>
-       
-    
-        )}
+        </div>{" "}
         <div className="listing-cards">
           {listings.map((listing) => (
             <ListingCard listing={listing} start={start} end={end} />
           ))}
         </div>
+      </div>
     </div>
   );
 };
