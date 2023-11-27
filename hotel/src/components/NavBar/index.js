@@ -58,9 +58,10 @@ const NavBar = () => {
                   <li class="nav__item">
                      <a href="/search" class="nav__link">Search</a>
                   </li>
+                  {user !== "" &&
                   <li class="nav__item">
                      <a href="/viewreservations" class="nav__link">MyBookings</a>
-                  </li>
+                  </li> }
                   <li>
                 
                 { user === "" && 

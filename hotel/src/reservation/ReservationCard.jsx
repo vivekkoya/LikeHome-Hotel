@@ -72,6 +72,7 @@ const ReservationCard = (Props) => {
       if (response.status === 200) {
         console.log("response 200");
         const data = await response.json();
+        console.log(data);
 
         console.log(data.imgurl);
         const start = new Date(booking.checkInDate);
