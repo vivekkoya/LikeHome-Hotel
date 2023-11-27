@@ -10,3 +10,23 @@
 .user-row {
     font-size: 16px;
 }
+
+.nav__name {
+    font-size: 36px;
+}
+
+.main-text {
+    margin-top: 24px;
+}
+
+.subheader {
+    display: flex;
+    space-between: 16px;
+    font-size: 16px;
+}
+
+.logo-in-navbar {
+    margin-left: 8px;
+    transform: translateY(-4px);
+}
+
