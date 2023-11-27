@@ -2,6 +2,7 @@
     padding: 20px;
 }
 
+
 h2 {
     padding-top: 12px;
     color: #14213D;
@@ -28,12 +29,14 @@ h2 {
     border-radius: 10px;
     border: 1px solid #14213D;
     margin: 0 15px 0 0;
-    background: white
+    background: white;
+    color: #333333
 }
 
 .my-datepicker p {
     margin-left: 15px;
     margin-bottom: 0px;
+    color: #333
 }
 
 .search-text-field {
@@ -43,7 +46,8 @@ h2 {
     width: 400px;
     height: 36px;
     padding: 0 32px;
-    font-size: 16px
+    font-size: 16px;
+    color: #333333
 }
 
 .search-icon {
@@ -54,13 +58,14 @@ h2 {
     /* Adjust the value to position the icon */
     transform: translatex(-2475%) translatey(10%) !important;
     z-index: 10 !important;
+    color: #333333
 }
 
 .search-button {
     border-radius: 10px;
     height: 36px;
     width: fit-content;
-    color: #F9F8F8;
+    color: black;
     font-size: 1.25rem;
     font-weight: 800;
     padding: 4px 8px;
@@ -81,15 +86,22 @@ h2 {
     width: 300px;
     margin-top: 15px;
     border-radius: 10px;
-    background-image: linear-gradient(to right, #4D7093, #87A3C0); /* Main color */
+    background-image: linear-gradient(to right, #444444, #666666); /* Main color */
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
+}
+
+.filterbox button {
+    color: black;
+    font-weight: 400px;
 }
 
 .find-body {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    margin-left: 125px;
+    justify-content: left;
     margin-top: 20px;
+    backdrop-filter: blur(10px);
 }
 
 
@@ -149,7 +161,7 @@ button {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5 ); /* Subtle shadow effect */
 }
 label {
-    color: black
+    color: white
 }
 
 h3{

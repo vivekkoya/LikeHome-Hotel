@@ -27,7 +27,7 @@ export function LoginForm(props) {
 
   const login = async () => {
     try {
-      const response = await fetch("https://hotel-rod6.onrender.com/user/login", {
+      const response = await fetch("http://localhost:5001/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,13 +78,13 @@ export function LoginForm(props) {
       <MutedLink href="#">Forget your password?</MutedLink>
       <Marginer direction="vertical" margin="1.6em" />
       <SubmitButton type="submit" onClick={login}>
-        Signin
+        Login
       </SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Don't have an account?{" "}
         <BoldLink href="#" onClick={switchToSignup}>
-          Signup
+          Sign up
         </BoldLink>
       </MutedLink>
     </BoxContainer>

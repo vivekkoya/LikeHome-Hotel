@@ -261,7 +261,7 @@ const Listings = () => {
               checked={sortPrice}
               onChange={() => handleSortChange("price")}
             ></input>
-            price
+            Price
           </label>
           <label>
             <input
@@ -270,7 +270,7 @@ const Listings = () => {
               checked={sortBed}
               onChange={() => handleSortChange("beds")}
             ></input>
-            bed
+            Bed
           </label>
           <label>
             <input
@@ -279,7 +279,7 @@ const Listings = () => {
               checked={sortPeople}
               onChange={() => handleSortChange("people")}
             ></input>
-            people
+            People
           </label>
           <h2>Amenities</h2>
           <div>
@@ -324,7 +324,6 @@ const Listings = () => {
                 {accessibility}
               </label>
             ))}
-            
           </div>
           <button
             onClick={applyChanges}

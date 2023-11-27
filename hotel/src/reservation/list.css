@@ -15,8 +15,9 @@
 .items-list li {
     list-style: none;
     display: flex;
-    color: darkgrey;
-
+    color: whitesmoke;
+    align-content: center;
+    justify-content: center;
 }
 
 .data-row {
