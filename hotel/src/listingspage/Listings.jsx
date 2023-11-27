@@ -56,7 +56,7 @@ const Listings = () => {
     const search = searchQuery.replace(" ", "%20");
     try {
       const res = await fetch(
-        `https://hotel-rod6.onrender.com/ListingInCity/${search}`,
+        `https://hotel-rod6.onrender.com/listings/ListingInCity/${search}`,
         {
           method: "POST",
         }
